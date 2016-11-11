@@ -18,7 +18,16 @@ public class QueryOrderServiceImpl implements QueryOrderService{
 	private QueryService queryService;
 	@Override
 	public OrderResultBean queryOrder(String tn) throws BusinessOrderException{
-		return null;
+		OrderResultBean order = null;
+		try {
+			com.zlebank.zplatform.payment.order.bean.OrderResultBean orderBean =this.queryService.queryOrderByTN(tn);
+			BeanUtils.copyProperties(orderBean, order);
+		} catch (PaymentOrderException e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+			throw new BusinessOrderException("BE0001");
+		}
+		return order;
 	}
 
 	@Override

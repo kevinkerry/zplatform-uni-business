@@ -30,7 +30,7 @@ public interface QuickPayService {
       * @param payPassword
       * @return
       */
-     public ResultBean payByPayPassword(PayBean bean , String payPassword);
+     public ResultBean payByPayPassword(PayBean bean ,String memberId, String payPassword);
      /****
       * 快捷支付(二者都有)
       * @param bean
@@ -38,7 +38,7 @@ public interface QuickPayService {
       * @param payPassword
       * @return
       */
-     public ResultBean pay(PayBean bean ,String smsCode, String payPassword);
+     public ResultBean pay(PayBean bean ,String memberId,String smsCode, String payPassword);
      
      
      

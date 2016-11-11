@@ -7,7 +7,7 @@ import com.zlebank.zplatform.business.sms.bean.SmsBean;
  * @author liusm
  *
  */
-public interface smsService {
+public interface SmsService {
 	/****
 	 * 非交易类型获取短信验证
 	 * @param bean
@@ -17,10 +17,12 @@ public interface smsService {
 	public ResultBean sendSmsCode(SmsBean bean) ;
 	 
 	/****
-	 * 根据绑卡Id和手机号获取短信验证码
+	 * 交易类型获取短信验证
+	 * 前提：不绑卡
+	 * @param tn 
 	 * @param bindId
 	 * @param phone
 	 * @return
 	 */
-	public ResultBean sendSmsCode(String bindId, String phone);
+	public ResultBean sendSmsCode(String tn , String phone);
 }

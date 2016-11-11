@@ -50,13 +50,11 @@ public class PayBean implements Serializable{
 	 */
 	private String bankCode;
 	
-	
-	
-	
 	/**
 	 * 交易金额
 	 */
 	private String txnAmt;
+
 	/**
 	 * @return the tn
 	 */

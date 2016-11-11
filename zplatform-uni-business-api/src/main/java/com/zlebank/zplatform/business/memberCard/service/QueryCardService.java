@@ -19,7 +19,7 @@ public interface QueryCardService {
 	 * @param cardNo
 	 * @return
 	 */
-    public com.zlebank.zplatform.business.memberCard.bean.CardBinResultBean queryCardBin(String cardNo);
+    public CardBinResultBean queryCardBin(String cardNo);
     /***
      * 查询支持的银行卡
      * @param query
