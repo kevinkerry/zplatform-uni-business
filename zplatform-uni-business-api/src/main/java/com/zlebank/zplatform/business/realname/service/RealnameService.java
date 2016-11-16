@@ -15,5 +15,5 @@ public interface RealnameService {
 	 * @param bean
 	 * @return
 	 */
-	public ResultBean realname (RealNameBean bean) ;
+	public ResultBean realname (RealNameBean bean)throws BusinessRealnameException ;
 }

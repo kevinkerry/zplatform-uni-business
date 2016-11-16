@@ -39,6 +39,8 @@ public class QuickCardBean implements Serializable {
     private String notes;
     /****/
     private String remarks;
+    
+    
 
     public String getCustomerno() {
 		return customerno;

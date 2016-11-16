@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.zlebank.zplatform.business.exception.BusinessOrderException;
 import com.zlebank.zplatform.business.order.bean.OrderResultBean;
 import com.zlebank.zplatform.business.order.service.QueryOrderService;
+import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
 import com.zlebank.zplatform.payment.exception.PaymentOrderException;
 import com.zlebank.zplatform.payment.order.service.QueryService;
 @Service("queryOrderService")
@@ -21,11 +22,15 @@ public class QueryOrderServiceImpl implements QueryOrderService{
 		OrderResultBean order = null;
 		try {
 			com.zlebank.zplatform.payment.order.bean.OrderResultBean orderBean =this.queryService.queryOrderByTN(tn);
-			BeanUtils.copyProperties(orderBean, order);
+			order = BeanCopyUtil.copyBean(OrderResultBean.class, orderBean);
 		} catch (PaymentOrderException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			throw new BusinessOrderException("BE0001");
+			throw new BusinessOrderException("BO00012");//查询订单失败
+		} catch (Exception e) {
+			e.printStackTrace();
+			 log.error(e.getMessage());
+			 throw new BusinessOrderException("BO00013");//查询订单异常
 		}
 		return order;
 	}
@@ -35,11 +40,15 @@ public class QueryOrderServiceImpl implements QueryOrderService{
 		OrderResultBean order = null;
 		try {
 			com.zlebank.zplatform.payment.order.bean.OrderResultBean orderBean =this.queryService.queryOrder(merchId, accOrderNo);
-			BeanUtils.copyProperties(orderBean, order);
+			order = BeanCopyUtil.copyBean(OrderResultBean.class, orderBean);
 		} catch (PaymentOrderException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			throw new BusinessOrderException("BE0001");
+			throw new BusinessOrderException("BO00012");//查询订单失败
+		} catch (Exception e) {
+			e.printStackTrace();
+			 log.error(e.getMessage());
+			 throw new BusinessOrderException("BO00013");//查询订单异常
 		}
 		return order;
 		
@@ -50,11 +59,15 @@ public class QueryOrderServiceImpl implements QueryOrderService{
 		OrderResultBean order = null;
 		try {
 			com.zlebank.zplatform.payment.order.bean.OrderResultBean orderBean =this.queryService.queryInsteadPayOrder(merchId, accOrderNo);
-			BeanUtils.copyProperties(orderBean, order);
+			order = BeanCopyUtil.copyBean(OrderResultBean.class, orderBean);
 		} catch (PaymentOrderException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			throw new BusinessOrderException("BE0001");
+			throw new BusinessOrderException("BO0014");//查询实时代付订单失败
+		}catch (Exception e) {
+			e.printStackTrace();
+			 log.error(e.getMessage());
+			 throw new BusinessOrderException("BO00015");//查询实时代付订单异常
 		}
 		return order;
 	}

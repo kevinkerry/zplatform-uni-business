@@ -29,17 +29,23 @@ public class SmsServiceImpl implements SmsService{
 	
 	@Override
 	public ResultBean sendSmsCode(SmsBean bean) {
-		if(bean ==null || bean.getMobile()==null || bean.getModuleType() ==null){
-			return  new ResultBean("BS0001", "参数不能为空！");
-		}
-		ModuleTypeEnum moduleType = ModuleTypeEnum.fromValue(bean.getModuleType());
-		if(moduleType .equals( ModuleTypeEnum.UNKNOW)){
-			return  new ResultBean("BS0002", "请检查短息模板类型！");
-		}
-		int smsResult = this.smsService.sendSMS(moduleType, bean.getMobile(),"" ,"" );
-		SmsResultEnum smsEnum= SmsResultEnum.fromValue(String.valueOf(smsResult));
-		if(smsEnum != SmsResultEnum.S100){
-			return  new ResultBean("BS0003", smsEnum.getMsg());
+		try {
+			if(bean ==null || bean.getMobile()==null || bean.getModuleType() ==null){
+				return  new ResultBean("BS0000", "参数不能为空！");
+			}
+			ModuleTypeEnum moduleType = ModuleTypeEnum.fromValue(bean.getModuleType());
+			if(moduleType .equals( ModuleTypeEnum.UNKNOW)){
+				return  new ResultBean("BS0001", "请检查短息模板类型！");
+			}
+			int smsResult = this.smsService.sendSMS(moduleType, bean.getMobile(),"" ,"" );
+			SmsResultEnum smsEnum= SmsResultEnum.fromValue(String.valueOf(smsResult));
+			if(smsEnum != SmsResultEnum.S100){
+				return  new ResultBean("BS0002", smsEnum.getMsg());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+			return new ResultBean("BS0007", "发送短信异常");
 		}
 		return new ResultBean(true);
 	}
@@ -50,31 +56,31 @@ public class SmsServiceImpl implements SmsService{
 		try {
 			//校验参数是否可以为空
 			if(StringUtil.isEmpty(tn)||StringUtil.isEmpty(phone)){
-				return  new ResultBean("BS0001", "参数不能为空！");
+				return  new ResultBean("BS0000", "参数不能为空！");
 			}
 			//校验tn
 			OrderResultBean orderBean = this.queryService.queryOrderByTN(tn);
 			if(orderBean == null){
-				return new ResultBean("BS0002", "根据TN查不到相应的交易");
+				return new ResultBean("BS0003", "根据TN查不到相应的交易");
 			}
 			if(orderBean.getOrderStatus().equals(OrderStatusEnum.SUCCESS)){
-				return new ResultBean("BS0003", "发送短信失败！此交易已支付");
+				return new ResultBean("BS0004", "发送短信失败！此交易已支付");
 			}else if(orderBean.getOrderStatus().equals(OrderStatusEnum.PAYING)){
-				return new ResultBean("BS0004", "发送短信失败！此交易正支付中");
+				return new ResultBean("BS0005", "发送短信失败！此交易正支付中");
 			}else if(orderBean.getOrderStatus().equals(OrderStatusEnum.FAILED)){
-				return new ResultBean("BS0005", "发送短信失败！此交易已超时");
+				return new ResultBean("BS0006", "发送短信失败！此交易已超时");
 			}
 			//发送短信
 			int smsResult = this.smsService.sendSMS(ModuleTypeEnum.ACCOUNTPAY, phone, tn, "");
 			SmsResultEnum smsEnum= SmsResultEnum.fromValue(String.valueOf(smsResult));
 			if(smsEnum != SmsResultEnum.S100){
-				return  new ResultBean("BS0003", smsEnum.getMsg());
+				return  new ResultBean("BS0002", smsEnum.getMsg());
 			}
 			return new ResultBean(true);
-		} catch (PaymentOrderException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			return new ResultBean("BS0006", "查询订单失败");
+			return new ResultBean("BS0007", "发送短信异常");
 		}
 	
 	}

@@ -11,6 +11,7 @@ import com.zlebank.zplatform.business.commons.enums.OrderStatusEnum;
 import com.zlebank.zplatform.business.commons.enums.SmsValidateEnum;
 import com.zlebank.zplatform.business.quickPay.bean.PayBean;
 import com.zlebank.zplatform.business.quickPay.service.QuickPayService;
+import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
 import com.zlebank.zplatform.member.exception.DataCheckFailedException;
 import com.zlebank.zplatform.member.individual.bean.MemberBean;
 import com.zlebank.zplatform.member.individual.bean.PoMemberBean;
@@ -45,25 +46,25 @@ public class QuickPayServiceImpl implements QuickPayService{
 		ResultBean resultBean = null;
 		try {
 			if(bean == null){
-				return new ResultBean("BP0000", "参数为空！");
+				return new ResultBean("BP0000", "参数不能为空！");
 			}
 			//根据TN校验订单信息
 			OrderResultBean orderBean =this.queryService.queryOrderByTN(bean.getTn());
 			if(orderBean == null){
-				return new ResultBean("BP0005","查询订单失败");
+				return new ResultBean("BP0006","查询订单失败");
 			}else if(orderBean.getOrderStatus().equals(OrderStatusEnum.SUCCESS)){
-				return new ResultBean("BS0006", "发送短信失败！此交易已支付");
+				return new ResultBean("BS0007", "发送短信失败！此交易已支付");
 			}else if(orderBean.getOrderStatus().equals(OrderStatusEnum.PAYING)){
-				return new ResultBean("BS0007", "发送短信失败！此交易正支付中");
+				return new ResultBean("BS0008", "发送短信失败！此交易正支付中");
 			}else if(orderBean.getOrderStatus().equals(OrderStatusEnum.FAILED)){
-				return new ResultBean("BS0008", "发送短信失败！此交易已超时");
+				return new ResultBean("BS009", "发送短信失败！此交易已超时");
 			}
-			BeanUtils.copyProperties(bean, payBean);
+			payBean = BeanCopyUtil.copyBean(com.zlebank.zplatform.payment.quickpay.bean.PayBean.class, bean);
 			com.zlebank.zplatform.payment.commons.bean.ResultBean  result =this.quickPayService.pay(payBean);
 			if(result!=null){
-				BeanUtils.copyProperties(result, resultBean);
+				resultBean= BeanCopyUtil.copyBean(ResultBean.class,result);
 			}else{
-				resultBean = new ResultBean("BP0008", "支付失败！");
+				resultBean = new ResultBean("BP0012", "支付失败！");
 			}
 		} catch (PaymentOrderException e) {
 			e.printStackTrace();
@@ -72,11 +73,15 @@ public class QuickPayServiceImpl implements QuickPayService{
 		}catch (PaymentQuickPayException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			resultBean = new ResultBean("BP0003", "支付异常！");
+			resultBean = new ResultBean("BP0003", "快捷支付异常！");
 		} catch (PaymentRouterException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
 			resultBean = new ResultBean("BP0004", "路由信息异常！");
+		}catch(Exception e){
+			e.printStackTrace();
+			log.error(e.getMessage());
+			resultBean = new ResultBean("BP00013", "支付异常！");
 		}
 		return resultBean;
 	}
@@ -87,19 +92,19 @@ public class QuickPayServiceImpl implements QuickPayService{
 		ResultBean resultBean = null;
 		try {
 			if(bean == null||smsCode==null){
-				return new ResultBean("BP0000", "参数为空！");
+				return new ResultBean("BP0000", "参数不能为空！");
 			}
 
 			//根据TN校验订单信息
 			OrderResultBean orderBean =this.queryService.queryOrderByTN(bean.getTn());
 			if(orderBean == null){
-				return new ResultBean("BP0005","查询订单失败");
+				return new ResultBean("BP0006","查询订单失败");
 			}else if(orderBean.getOrderStatus().equals(OrderStatusEnum.SUCCESS)){
-				return new ResultBean("BS0006", "发送短信失败！此交易已支付");
+				return new ResultBean("BS0007", "发送短信失败！此交易已支付");
 			}else if(orderBean.getOrderStatus().equals(OrderStatusEnum.PAYING)){
-				return new ResultBean("BS0007", "发送短信失败！此交易正支付中");
+				return new ResultBean("BS0008", "发送短信失败！此交易正支付中");
 			}else if(orderBean.getOrderStatus().equals(OrderStatusEnum.FAILED)){
-				return new ResultBean("BS0008", "发送短信失败！此交易已超时");
+				return new ResultBean("BS009", "发送短信失败！此交易已超时");
 			}
 			//校验短信
 			int vcode =this.smsService.verifyCode(bean.getPhone(), bean.getTn(), smsCode);
@@ -108,12 +113,13 @@ public class QuickPayServiceImpl implements QuickPayService{
 				return new ResultBean("BP0005", valEnum.getMsg());
 			}
 			//支付
-			BeanUtils.copyProperties(bean, payBean);
+			
+			payBean = BeanCopyUtil.copyBean(com.zlebank.zplatform.payment.quickpay.bean.PayBean.class, bean);
 			com.zlebank.zplatform.payment.commons.bean.ResultBean  result =this.quickPayService.pay(payBean);
 			if(result!=null){
-				BeanUtils.copyProperties(result, resultBean);
+				resultBean= BeanCopyUtil.copyBean(ResultBean.class,result);
 			}else{
-				resultBean = new ResultBean("BP0001", "支付失败！");
+				resultBean = new ResultBean("BP0012", "支付失败！");
 			}
 		} catch (PaymentOrderException e) {
 			e.printStackTrace();
@@ -122,11 +128,15 @@ public class QuickPayServiceImpl implements QuickPayService{
 		}catch (PaymentQuickPayException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			resultBean = new ResultBean("BP0003", "支付异常！");
+			resultBean = new ResultBean("BP0003", "快捷支付异常！");
 		} catch (PaymentRouterException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
 			resultBean = new ResultBean("BP0004", "路由信息异常！");
+		} catch(Exception e){
+			e.printStackTrace();
+			log.error(e.getMessage());
+			resultBean = new ResultBean("BP00013", "支付异常！");
 		}
 		return resultBean;
 	}
@@ -142,18 +152,18 @@ public class QuickPayServiceImpl implements QuickPayService{
 			//根据TN校验订单信息
 			OrderResultBean orderBean =this.queryService.queryOrderByTN(bean.getTn());
 			if(orderBean == null){
-				return new ResultBean("BP0005","查询订单失败");
+				return new ResultBean("BP0006","查询订单失败");
 			}else if(orderBean.getOrderStatus().equals(OrderStatusEnum.SUCCESS)){
-				return new ResultBean("BS0006", "发送短信失败！此交易已支付");
+				return new ResultBean("BS0007", "发送短信失败！此交易已支付");
 			}else if(orderBean.getOrderStatus().equals(OrderStatusEnum.PAYING)){
-				return new ResultBean("BS0007", "发送短信失败！此交易正支付中");
+				return new ResultBean("BS0008", "发送短信失败！此交易正支付中");
 			}else if(orderBean.getOrderStatus().equals(OrderStatusEnum.FAILED)){
-				return new ResultBean("BS0008", "发送短信失败！此交易已超时");
+				return new ResultBean("BS009", "发送短信失败！此交易已超时");
 			}
 			//校验会员信息
 		   PoMemberBean member = memberService.getMbmberByMemberId(memberId, MemberType.INDIVIDUAL);
 	        if (member == null) {// 资金账户不存在
-	        	return new ResultBean("BP0009", "查询会员失败");
+	        	return new ResultBean("BP0010", "查询会员失败");
 	        }
 		    MemberBean memberBean = new MemberBean();
 	        memberBean.setLoginName(member.getLoginName());
@@ -162,15 +172,15 @@ public class QuickPayServiceImpl implements QuickPayService{
 	        memberBean.setPaypwd(payPassword);
 	        boolean pwdFlag= this.memberOperationService.verifyPayPwd(MemberType.INDIVIDUAL, memberBean);
 			if(!pwdFlag){
-				return new ResultBean("BP0010", "支付密码校验败");
+				return new ResultBean("BP0011", "支付密码校验失败");
 			}
 			//支付
-			BeanUtils.copyProperties(bean, payBean);
+			payBean = BeanCopyUtil.copyBean(com.zlebank.zplatform.payment.quickpay.bean.PayBean.class, bean);
 			com.zlebank.zplatform.payment.commons.bean.ResultBean  result =this.quickPayService.pay(payBean);
 			if(result!=null){
-				BeanUtils.copyProperties(result, resultBean);
+				resultBean= BeanCopyUtil.copyBean(ResultBean.class,result);
 			}else{
-				resultBean = new ResultBean("BP0001", "支付失败！");
+				resultBean = new ResultBean("BP0012", "支付失败！");
 			}
 		}catch (PaymentOrderException e) {
 			e.printStackTrace();
@@ -183,11 +193,15 @@ public class QuickPayServiceImpl implements QuickPayService{
 		} catch (PaymentQuickPayException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			resultBean = new ResultBean("BP0003", "支付异常！");
+			resultBean = new ResultBean("BP0003", "快捷支付异常！");
 		} catch (PaymentRouterException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
 			resultBean = new ResultBean("BP0004", "路由信息异常！");
+		}catch(Exception e){
+			e.printStackTrace();
+			log.error(e.getMessage());
+			resultBean = new ResultBean("BP00013", "支付异常！");
 		}
 		return resultBean;
 	}
@@ -230,7 +244,7 @@ public class QuickPayServiceImpl implements QuickPayService{
 	        memberBean.setPaypwd(payPassword);
 	        boolean pwdFlag = this.memberOperationService.verifyPayPwd(MemberType.INDIVIDUAL, memberBean);
 			if(!pwdFlag){
-				return new ResultBean("BP0011", "支付密码校验败");
+				return new ResultBean("BP0011", "支付密码校验失败");
 			}
 			//支付
 			BeanUtils.copyProperties(bean, payBean);
@@ -251,11 +265,15 @@ public class QuickPayServiceImpl implements QuickPayService{
 		} catch (PaymentQuickPayException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			resultBean = new ResultBean("BP0003", "支付异常！");
+			resultBean = new ResultBean("BP0003", "快捷支付异常！");
 		} catch (PaymentRouterException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
 			resultBean = new ResultBean("BP0004", "路由信息异常！");
+		}catch(Exception e){
+			e.printStackTrace();
+			log.error(e.getMessage());
+			resultBean = new ResultBean("BP00013", "支付异常！");
 		}
 		return resultBean;
 	}
