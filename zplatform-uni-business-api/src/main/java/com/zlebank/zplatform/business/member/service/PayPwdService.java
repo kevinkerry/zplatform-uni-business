@@ -4,7 +4,7 @@ import com.zlebank.zplatform.business.commons.bean.ResultBean;
 
 public interface PayPwdService {
 	/**
-	 * 验证支付密码  Verify the pay password
+	 * 验证支付密码  
 	 * @param memberId 会员号
 	 * @param payPwd 支付密码
 	 * @return
@@ -13,8 +13,6 @@ public interface PayPwdService {
 	public ResultBean vaildatePayPwd(String memberId,String payPwd);
 	
 	/**
-     * Modify the pay password.<p>Note:The up layer which invoker the method must make
-     * sure that member has login</p>
 	 * 修改支付密码
 	 * @param memberId 会员号
 	 * @param orgPayPwd 原始支付密码
@@ -24,7 +22,7 @@ public interface PayPwdService {
 	 */
 	public ResultBean modifyPayPwd(String memberId,String orgPayPwd,String payPwd) ;
 	/**
-	 * 重置支付密码 Reset pay password.No need to make sure that member has login
+	 * 重置支付密码 
 	 * @param memberId 会员号
 	 * @param payPwd 支付密码
 	 * @param smsCode 短信验证码

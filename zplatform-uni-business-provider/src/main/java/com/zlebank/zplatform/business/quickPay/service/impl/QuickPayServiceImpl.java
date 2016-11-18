@@ -24,7 +24,7 @@ import com.zlebank.zplatform.payment.exception.PaymentRouterException;
 import com.zlebank.zplatform.payment.order.bean.OrderResultBean;
 import com.zlebank.zplatform.payment.order.service.QueryService;
 import com.zlebank.zplatform.sms.service.ISMSService;
-@Service("quickPayService")
+@Service("busQuickPayService")
 public class QuickPayServiceImpl implements QuickPayService{
 	
 	private final static Logger log = LoggerFactory.getLogger(QuickPayServiceImpl.class);

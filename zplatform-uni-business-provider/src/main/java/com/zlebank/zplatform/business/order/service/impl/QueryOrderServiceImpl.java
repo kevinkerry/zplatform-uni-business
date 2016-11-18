@@ -2,7 +2,6 @@ package com.zlebank.zplatform.business.order.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,7 @@ import com.zlebank.zplatform.business.order.service.QueryOrderService;
 import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
 import com.zlebank.zplatform.payment.exception.PaymentOrderException;
 import com.zlebank.zplatform.payment.order.service.QueryService;
-@Service("queryOrderService")
+@Service("busQueryOrderService")
 public class QueryOrderServiceImpl implements QueryOrderService{
 	private final static Logger log = LoggerFactory.getLogger(QueryOrderServiceImpl.class);
 	@Autowired

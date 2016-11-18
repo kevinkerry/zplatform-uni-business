@@ -22,7 +22,7 @@ import com.zlebank.zplatform.member.individual.bean.MemberBean;
 import com.zlebank.zplatform.member.individual.bean.enums.MemberType;
 import com.zlebank.zplatform.member.individual.exception.GetAccountFailedException;
 import com.zlebank.zplatform.member.individual.service.MemberAccountService;
-@Service("queryAccountService")
+@Service("busQueryAccountService")
 public class QueryAccountServiceImpl implements QueryAccountService {
 	
 	private final static Logger log = LoggerFactory.getLogger(QueryAccountServiceImpl.class);

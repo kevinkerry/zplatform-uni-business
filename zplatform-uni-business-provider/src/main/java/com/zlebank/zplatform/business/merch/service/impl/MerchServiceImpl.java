@@ -5,10 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zlebank.zplatform.business.commons.bean.ResultBean;
 import com.zlebank.zplatform.business.exception.BusinessMerchException;
-import com.zlebank.zplatform.business.member.bean.RegisterMemberBean;
-import com.zlebank.zplatform.business.member.service.impl.BindMobileServiceImpl;
 import com.zlebank.zplatform.business.merch.service.MerchService;
 import com.zlebank.zplatform.commons.utils.StringUtil;
 import com.zlebank.zplatform.member.individual.bean.MemberBean;
@@ -18,7 +15,7 @@ import com.zlebank.zplatform.member.individual.service.MemberOperationService;
 import com.zlebank.zplatform.member.individual.service.MemberService;
 import com.zlebank.zplatform.member.merchant.bean.MerchMK;
 import com.zlebank.zplatform.member.merchant.service.MerchMKService;
-@Service("merchService")
+@Service("busMerchService")
 public class MerchServiceImpl implements MerchService {
 	private final static Logger log = LoggerFactory.getLogger(MerchServiceImpl.class);
 	@Autowired

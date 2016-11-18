@@ -1,5 +1,7 @@
 package com.zlebank.zplatform.business.member.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,14 +10,14 @@ import org.springframework.stereotype.Service;
 import com.zlebank.zplatform.business.exception.BusinessMemberException;
 import com.zlebank.zplatform.business.member.bean.MemberBean;
 import com.zlebank.zplatform.business.member.service.QueryMemberService;
-import com.zlebank.zplatform.business.memberCard.service.impl.QueryCardServiceImpl;
 import com.zlebank.zplatform.member.coopinsti.bean.CoopInsti;
 import com.zlebank.zplatform.member.coopinsti.service.CoopInstiService;
+import com.zlebank.zplatform.member.exception.InvalidMemberDataException;
 import com.zlebank.zplatform.member.individual.bean.PoMemberBean;
 import com.zlebank.zplatform.member.individual.bean.enums.MemberType;
 import com.zlebank.zplatform.member.individual.bean.enums.RealNameLvType;
 import com.zlebank.zplatform.member.individual.service.MemberService;
-@Service("memberService")
+@Service("busQueryMemberService")
 public class QueryMemberServiceImpl implements QueryMemberService {
 	private final static Logger log = LoggerFactory.getLogger(QueryMemberServiceImpl.class);
 	@Autowired
@@ -32,10 +34,11 @@ public class QueryMemberServiceImpl implements QueryMemberService {
 	    if(coopInsti == null){
 	    	 throw new BusinessMemberException("BM0031");
 	    }
-	    PoMemberBean pm = memberService.getMemberByLoginNameAndCoopInsti(loginName, coopInsti.getId());
-		if(pm==null){
-			 throw new BusinessMemberException("BM0008");
+		List<PoMemberBean> pmList = memberService.getMemberByLoginNameAndCoopInsti(loginName, coopInsti.getId());
+		if(pmList.size()==0){
+			return null;
 		}
+		PoMemberBean pm = pmList.get(0);
 		MemberBean member = new MemberBean();
 		long memid = pm.getMemId();
 		String memberId = pm.getMemberId();

@@ -30,6 +30,7 @@ import com.zlebank.zplatform.business.pojo.PojoCardBin;
  */
 @Repository("cardBinDAO")
 public class CardBinDAOImpl extends HibernateBaseDAOImpl<PojoCardBin> implements CardBinDAO{
+	
 	@Transactional(readOnly=true)
 	public CardBin getCard(String cardNo) {
 		StringBuffer sqlBuffer = new StringBuffer();

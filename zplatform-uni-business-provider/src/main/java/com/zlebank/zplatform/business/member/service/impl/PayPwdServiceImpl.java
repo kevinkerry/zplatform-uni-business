@@ -3,6 +3,7 @@ package com.zlebank.zplatform.business.member.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.zlebank.zplatform.business.commons.bean.ResultBean;
 import com.zlebank.zplatform.business.commons.enums.SmsValidateEnum;
@@ -18,7 +19,7 @@ import com.zlebank.zplatform.member.individual.service.MemberOperationService;
 import com.zlebank.zplatform.member.individual.service.MemberService;
 import com.zlebank.zplatform.sms.pojo.enums.ModuleTypeEnum;
 import com.zlebank.zplatform.sms.service.ISMSService;
-
+@Service("busPayPwdService")
 public class PayPwdServiceImpl implements PayPwdService {
 	private final static Logger log = LoggerFactory.getLogger(LoginPwdServiceImpl.class);
 	@Autowired
@@ -49,22 +50,22 @@ public class PayPwdServiceImpl implements PayPwdService {
 			if(flag){
 				return new ResultBean(true);
 			}else{
-				return new ResultBean("BM0016", "校验支付密码失败");
+				return new ResultBean("BM0018", "校验支付密码失败");
 			}
 		} catch (DataCheckFailedException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			return new ResultBean("BM0017","数据检查异常");
+			return new ResultBean("BM0019","校验支付密码信息失败："+e.getMessage());
 		} catch(Exception e){
 			e.printStackTrace();
 			log.error(e.getMessage());
-			return new ResultBean("BM0017","校验支付密码异常");
+			return new ResultBean("BM0020","校验支付密码异常");
 		}
 	}
 
 	@Override
 	public ResultBean modifyPayPwd(String memberId, String orgPayPwd, String payPwd) {
-		if(memberId==null || orgPayPwd == null || payPwd == null){
+		if(memberId==null || payPwd == null){
 			return new ResultBean("BM0000","参数不能为空");
 		}
 		PoMemberBean pm = memberService.getMbmberByMemberId(memberId, MemberType.INDIVIDUAL);
@@ -75,7 +76,7 @@ public class PayPwdServiceImpl implements PayPwdService {
 		member.setLoginName(pm.getLoginName());
 		member.setInstiId(pm.getInstiId());
 		member.setPhone(pm.getPhone());
-		member.setPwd(orgPayPwd);
+		member.setPaypwd(orgPayPwd);
 		try {
 			Boolean flag =null;
 			//修改
@@ -88,16 +89,16 @@ public class PayPwdServiceImpl implements PayPwdService {
 			if(flag){
 				return new ResultBean(true);
 			}else{
-				return new ResultBean("BM0018", "修改支付密码失败");
+				return new ResultBean("BM0021", "修改支付密码失败");
 			}
 		} catch(DataCheckFailedException e){
 			e.printStackTrace();
 			log.error(e.getMessage());
-			return new ResultBean("BM0019","修改支付密码异常");
+			return new ResultBean("BM0022","修改支付密码信息校验失败："+e.getMessage());
 		}catch (Exception e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			return new ResultBean("BM0019","修改支付密码异常");
+			return new ResultBean("BM0023","修改支付密码异常");
 			
 		}
 	}
@@ -111,7 +112,13 @@ public class PayPwdServiceImpl implements PayPwdService {
 		if(pm==null){
 			return new ResultBean("BM0008","查询会员失败");
 		}
-		int vcode = smsService.verifyCode(ModuleTypeEnum.CHANGELOGINPWD.getCode(), pm.getPhone(), smsCode);
+		int vcode=0;
+		try {
+			 vcode = smsService.verifyCode(ModuleTypeEnum.CHANGELOGINPWD, pm.getPhone(), smsCode);
+		} catch (Exception e) {
+			e.getMessage();
+			return new ResultBean("BM0001", "查询短信失败，请重新获取短信验证码");
+		}
 		SmsValidateEnum valEnum =SmsValidateEnum.fromValue(String.valueOf(vcode));
 		if(valEnum != SmsValidateEnum.SV1){
 			return new ResultBean("BM0001", valEnum.getMsg());
@@ -125,16 +132,16 @@ public class PayPwdServiceImpl implements PayPwdService {
 			if(flag){
 				return new ResultBean(true);
 			}else{
-				return new ResultBean("BM0020","重置支付密码失败");
+				return new ResultBean("BM0024","重置支付密码失败");
 			}
 		}catch(DataCheckFailedException e){
 			e.printStackTrace();
 			log.error(e.getMessage());
-			return new ResultBean("BM0021","重置支付密码异常");
+			return new ResultBean("BM0025","重置支付密码信息校验失败："+e.getMessage());
 		}catch (Exception e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			return new ResultBean("BM0021","重置支付密码异常");
+			return new ResultBean("BM0026","重置支付密码异常");
 			
 		}
 	}
@@ -147,17 +154,23 @@ public class PayPwdServiceImpl implements PayPwdService {
 		//获取绑卡信息
 		QuickpayCustBean memberBankCard = memberBankCardService.getMemberBankCardById(bindId);
 		if(memberBankCard==null){
-			return new ResultBean("BM0022", "未找到银行卡信息");
+			return new ResultBean("BM0027", "未找到银行卡信息");
 		}
 		//校验银行卡号
 		if(!cardNo.equals(memberBankCard.getCardno())){
-			return new ResultBean("BM0023", "银行卡号错误");
+			return new ResultBean("BM0028", "银行卡号错误");
 		}
 		if(!memberBankCard.getPhone().equals(phone)){
-			return new ResultBean("BM0024", "银行卡预留手机号错误");
+			return new ResultBean("BM0029", "银行卡预留手机号错误");
 		}
 		//验证短信验证码
-		int vcode = smsService.verifyCode(ModuleTypeEnum.RESETPAYPWD.getCode(), phone, smsCode);
+		int vcode=0;
+		try {
+			vcode = smsService.verifyCode(ModuleTypeEnum.RESETPAYPWD, phone, smsCode);
+		} catch (Exception e) {
+			e.getMessage();
+			return new ResultBean("BM0001", "查询短信失败，请重新获取短信验证码");
+		}
 		SmsValidateEnum valEnum =SmsValidateEnum.fromValue(String.valueOf(vcode));
 		if(valEnum != SmsValidateEnum.SV1){
 			return new ResultBean("BM0001", valEnum.getMsg());

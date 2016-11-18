@@ -2,7 +2,6 @@ package com.zlebank.zplatform.business.realname.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,7 @@ import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
 import com.zlebank.zplatform.payment.exception.PaymentRealNameException;
 import com.zlebank.zplatform.payment.realname.bean.RealNameCardBean;
 import com.zlebank.zplatform.payment.realname.service.RealNameCardService;
-@Service("realnameService")
+@Service("busRealnameService")
 public class RealnameServiceImpl implements RealnameService {
 	
 	private final static Logger log = LoggerFactory.getLogger(RealnameServiceImpl.class);

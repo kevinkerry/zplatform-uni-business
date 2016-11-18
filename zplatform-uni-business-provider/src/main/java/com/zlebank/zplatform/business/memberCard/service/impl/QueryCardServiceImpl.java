@@ -29,7 +29,7 @@ import com.zlebank.zplatform.commons.utils.StringUtil;
 import com.zlebank.zplatform.member.commons.bean.PagedResult;
 import com.zlebank.zplatform.member.individual.bean.QuickpayCustBean;
 import com.zlebank.zplatform.member.individual.service.MemberBankCardService;
-@Service("queryCardService")
+@Service("busQueryCardService")
 public class QueryCardServiceImpl implements QueryCardService {
 	private final static Logger log = LoggerFactory.getLogger(QueryCardServiceImpl.class);
 	

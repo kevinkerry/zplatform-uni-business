@@ -22,7 +22,7 @@ import com.zlebank.zplatform.member.individual.service.MemberOperationService;
 import com.zlebank.zplatform.member.individual.service.MemberService;
 import com.zlebank.zplatform.sms.pojo.enums.ModuleTypeEnum;
 import com.zlebank.zplatform.sms.service.ISMSService;
-@Service("cardService")
+@Service("busCardService")
 public class CardServiceImpl implements CardService {
 	private final static Logger log = LoggerFactory.getLogger(CardServiceImpl.class);
 	@Autowired

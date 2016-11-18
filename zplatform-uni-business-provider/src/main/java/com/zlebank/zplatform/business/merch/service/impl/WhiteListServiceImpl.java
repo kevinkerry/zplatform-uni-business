@@ -12,7 +12,7 @@ import com.zlebank.zplatform.business.merch.bean.MerchWhiteBean;
 import com.zlebank.zplatform.business.merch.service.WhiteListService;
 import com.zlebank.zplatform.business.pojo.PojoMerchWhiteList;
 import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
-@Service("whiteListService")
+@Service("busWhiteListService")
 public class WhiteListServiceImpl implements WhiteListService {
 	
 	private final static Logger log = LoggerFactory.getLogger(WhiteListServiceImpl.class);

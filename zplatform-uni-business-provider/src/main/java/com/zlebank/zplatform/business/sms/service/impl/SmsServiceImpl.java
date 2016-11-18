@@ -19,7 +19,7 @@ import com.zlebank.zplatform.payment.order.service.OrderService;
 import com.zlebank.zplatform.payment.order.service.QueryService;
 import com.zlebank.zplatform.sms.pojo.enums.ModuleTypeEnum;
 import com.zlebank.zplatform.sms.service.ISMSService;
-@Service("smsService")
+@Service("busSmsService")
 public class SmsServiceImpl implements SmsService{
 	private final static Logger log = LoggerFactory.getLogger(SmsServiceImpl.class);
 	@Autowired

@@ -14,6 +14,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -45,6 +46,7 @@ public class PojoCardBin implements Serializable {
 	/** 卡类型 **/
 	private String type;
 	
+	@Id
 	@Column(name = "CARDBIN")
 	public String getCardBin() {
 		return cardBin;

@@ -24,7 +24,7 @@ import com.zlebank.zplatform.payment.order.bean.InsteadPayOrderBean;
 import com.zlebank.zplatform.payment.order.bean.SimpleOrderBean;
 import com.zlebank.zplatform.payment.order.bean.WithdrawOrderBean;
 
-@Service("orderService")
+@Service("busOrderService")
 public class OrderServiceImpl implements OrderService{
 	private final static Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
 	

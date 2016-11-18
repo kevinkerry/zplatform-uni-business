@@ -2,7 +2,7 @@ package com.zlebank.zplatform.business.commons.enums;
 
 public enum SmsValidateEnum {
 	UNKNOWN("UNKNOWN","未知"),
-	
+	SV0("0","请重新获取短信验证码!"),
 	SV1("1","短信发送成功!"),
 	SV2("2","短信校验失败!"),
 	SV3("3","请先发送短信!"),

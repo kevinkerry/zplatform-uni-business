@@ -19,11 +19,12 @@ import com.zlebank.zplatform.member.exception.DataCheckFailedException;
 import com.zlebank.zplatform.member.exception.InvalidMemberDataException;
 import com.zlebank.zplatform.member.exception.LoginFailedException;
 import com.zlebank.zplatform.member.individual.bean.MemberBean;
+import com.zlebank.zplatform.member.individual.bean.PersonBean;
 import com.zlebank.zplatform.member.individual.bean.enums.MemberType;
 import com.zlebank.zplatform.member.individual.service.MemberOperationService;
 import com.zlebank.zplatform.sms.pojo.enums.ModuleTypeEnum;
 import com.zlebank.zplatform.sms.service.ISMSService;
-@Service("memberService")
+@Service("busMemberService")
 public class MemberServiceImpl implements MemberService {
 	private final static Logger log = LoggerFactory.getLogger(MemberServiceImpl.class);
 	@Autowired
@@ -44,7 +45,7 @@ public class MemberServiceImpl implements MemberService {
 			return new ResultBean("BM0002", "合作机构不存在");
 		}
 		String memberId = null;
-		MemberBean member= BeanCopyUtil.copyBean(MemberBean.class, registerMemberInfo);
+		PersonBean member= BeanCopyUtil.copyBean(PersonBean.class, registerMemberInfo);
 		member.setInstiId(coopInsti.getId());
 		try {
 			memberId = memberOperationService.registMember(MemberType.INDIVIDUAL, member);
@@ -52,7 +53,7 @@ public class MemberServiceImpl implements MemberService {
 		} catch (InvalidMemberDataException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			return new ResultBean("BM0003", "无效的会员信息");
+			return new ResultBean("BM0003", "非法会员信息："+e.getMessage());
 		} catch (CreateMemberFailedException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
@@ -89,7 +90,7 @@ public class MemberServiceImpl implements MemberService {
 		} catch (InvalidMemberDataException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			return new ResultBean("BM0003", "无效的会员信息");
+			return new ResultBean("BM0003", "非法会员信息："+e.getMessage());
 		} catch (CreateMemberFailedException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
@@ -121,7 +122,7 @@ public class MemberServiceImpl implements MemberService {
 		} catch(LoginFailedException e){
 			e.printStackTrace();
 			log.error(e.getMessage());
-			return new ResultBean("BM0006", "登录失败");
+			return new ResultBean("BM0006", "登录失败："+e.getMessage());
 		}catch (Exception e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
