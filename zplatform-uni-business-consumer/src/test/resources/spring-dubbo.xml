@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<!-- 会员 
+	<dubbo:service interface="com.zlebank.zplatform.business.member.service.BindMobileService" ref="busBindMobileService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.member.service.LoginPwdService" ref="busLoginPwdService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.member.service.MemberService" ref="busMemberService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.member.service.QueryMemberService" ref="busQueryMemberService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.member.service.PayPwdService" ref="busPayPwdService" retries="0" version="1.0" timeout="60000"/>
+	-->
+	<!-- 商户
+	<dubbo:service interface="com.zlebank.zplatform.business.merch.service.MerchService" ref="busMerchService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.merch.service.WhiteListService" ref="busWhiteListService" retries="0" version="1.0" timeout="60000"/>
+	-->
+	<!-- 会员账户
+	<dubbo:service interface="com.zlebank.zplatform.business.memberAccount.service.MemberAccountService" ref="busMemberAccountService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.memberAccount.service.QueryAccountService" ref="busQueryAccountService" retries="0" version="1.0" timeout="60000"/>
+	 -->
+	<!-- 会员银行卡
+	<dubbo:service interface="com.zlebank.zplatform.business.memberCard.service.CardService" ref="busCardService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.memberCard.service.QueryCardService" ref="busQueryCardService" retries="0" version="1.0" timeout="60000"/>
+	 -->
+	<!-- 订单 
+	<dubbo:service interface="com.zlebank.zplatform.business.order.service.OrderService" ref="busOrderService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.order.service.QueryOrderService" ref="busQueryOrderService" retries="0" version="1.0" timeout="60000"/>
+	-->
+	<!-- 支付 
+	<dubbo:service interface="com.zlebank.zplatform.business.quickPay.service.QuickPayService" ref="busQuickPayService" retries="0" version="1.0" timeout="60000"/>
+	-->
+	<!-- 实名认证
+	<dubbo:service interface="com.zlebank.zplatform.business.realname.service.RealnameService" ref="busRealnameService" retries="0" version="1.0" timeout="60000"/>
+	 -->
+	<!-- 短信 
+	<dubbo:service interface="com.zlebank.zplatform.business.sms.service.SmsService" ref="busSmsService" retries="0" version="1.0" timeout="60000"/>
+	-->
+	
+	<dubbo:reference  id="busBindMobileService" interface="com.zlebank.zplatform.business.member.service.BindMobileService"   version="1.0" />
+	<dubbo:reference  id="busLoginPwdService"  interface="com.zlebank.zplatform.business.member.service.LoginPwdService" version="1.0" />
+	<dubbo:reference  id="busMemberService"     interface="com.zlebank.zplatform.business.member.service.MemberService"  version="1.0" />
+	<dubbo:reference  id="busQueryMemberService" interface="com.zlebank.zplatform.business.member.service.QueryMemberService"  version="1.0" />
+	<dubbo:reference  id="busPayPwdService"      interface="com.zlebank.zplatform.business.member.service.PayPwdService" version="1.0" />
+	
+	<dubbo:reference  id="busSmsService"      interface="com.zlebank.zplatform.business.sms.service.SmsService" version="1.0" />
+</beans>

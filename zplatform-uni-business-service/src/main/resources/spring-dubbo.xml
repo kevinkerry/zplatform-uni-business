@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<!-- 会员 -->
+	<dubbo:service interface="com.zlebank.zplatform.business.member.service.BindMobileService" ref="busBindMobileService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.member.service.LoginPwdService" ref="busLoginPwdService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.member.service.MemberService" ref="busMemberService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.member.service.QueryMemberService" ref="busQueryMemberService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.member.service.PayPwdService" ref="busPayPwdService" retries="0" version="1.0" timeout="60000"/>
+	<!-- 商户-->
+	<dubbo:service interface="com.zlebank.zplatform.business.merch.service.MerchService" ref="busMerchService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.merch.service.WhiteListService" ref="busWhiteListService" retries="0" version="1.0" timeout="60000"/>
+	<!-- 会员账户 -->
+	<dubbo:service interface="com.zlebank.zplatform.business.memberAccount.service.MemberAccountService" ref="busMemberAccountService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.memberAccount.service.QueryAccountService" ref="busQueryAccountService" retries="0" version="1.0" timeout="60000"/>
+	<!-- 会员银行卡 -->
+	<dubbo:service interface="com.zlebank.zplatform.business.memberCard.service.CardService" ref="busCardService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.memberCard.service.QueryCardService" ref="busQueryCardService" retries="0" version="1.0" timeout="60000"/>
+	<!-- 订单 -->
+	<dubbo:service interface="com.zlebank.zplatform.business.order.service.OrderService" ref="busOrderService" retries="0" version="1.0" timeout="60000"/>
+	<dubbo:service interface="com.zlebank.zplatform.business.order.service.QueryOrderService" ref="busQueryOrderService" retries="0" version="1.0" timeout="60000"/>
+	<!-- 支付 -->
+	<dubbo:service interface="com.zlebank.zplatform.business.quickPay.service.QuickPayService" ref="busQuickPayService" retries="0" version="1.0" timeout="60000"/>
+	<!-- 实名认证 -->
+	<dubbo:service interface="com.zlebank.zplatform.business.realname.service.RealnameService" ref="busRealnameService" retries="0" version="1.0" timeout="60000"/>
+	<!-- 短信 -->
+	<dubbo:service interface="com.zlebank.zplatform.business.sms.service.SmsService" ref="busSmsService" retries="0" version="1.0" timeout="60000"/>
+	
+	<!-- 订阅服务 -->
+	<dubbo:reference id="memberService" interface="com.zlebank.zplatform.member.individual.service.MemberService" version="1.0"/>
+	<dubbo:reference id="memberOperationService" interface="com.zlebank.zplatform.member.individual.service.MemberOperationService" version="1.0"/>
+	<dubbo:reference id="memberBankCardService" interface="com.zlebank.zplatform.member.individual.service.MemberBankCardService" version="1.0"/>
+	<dubbo:reference id="coopInstiService" interface="com.zlebank.zplatform.member.coopinsti.service.CoopInstiService" version="1.0"/>
+	<dubbo:reference id="memberAccountService" interface="com.zlebank.zplatform.member.individual.service.MemberAccountService" version="1.0"/>
+	
+	<dubbo:reference id="merchMKService" interface="com.zlebank.zplatform.member.merchant.service.MerchMKService" version="1.0"/>
+	<dubbo:reference id="orderService" interface="com.zlebank.zplatform.payment.order.service.OrderService" version="1.0"/>
+	<dubbo:reference id="queryService" interface="com.zlebank.zplatform.payment.order.service.QueryService" version="1.0"/>
+	<dubbo:reference id="realNameCardService" interface="com.zlebank.zplatform.payment.realname.service.RealNameCardService" version="1.0"/>
+	<dubbo:reference id="quickPayService" interface="com.zlebank.zplatform.payment.quickpay.service.QuickPayService" version="1.0"/>
+	
+</beans>
