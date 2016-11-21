@@ -1,4 +1,4 @@
-package com.zlebank.zplatform.business.quickPay.bean;
+package com.zlebank.zplatform.business.pay.bean;
 
 import java.io.Serializable;
 

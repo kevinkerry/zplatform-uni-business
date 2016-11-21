@@ -38,7 +38,7 @@ public interface QueryCardService {
      * @param pageSize
      * @return
      */
-    public PageVo<QueryCardResultBean> queryBindCardedList(QueryCardBean query,int page,int pageSize)throws BusinessCardException;
+    public PageVo<QueryCardResultBean> queryBindCardList(QueryCardBean query,int page,int pageSize)throws BusinessCardException;
     /***
      * 根据卡号查询ICON
      * @param bankCode

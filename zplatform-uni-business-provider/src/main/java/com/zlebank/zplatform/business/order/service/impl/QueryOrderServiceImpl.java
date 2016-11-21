@@ -43,11 +43,11 @@ public class QueryOrderServiceImpl implements QueryOrderService{
 		} catch (PaymentOrderException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			throw new BusinessOrderException("BO00012");//查询订单失败
+			throw new BusinessOrderException("BO0012");//查询订单失败
 		} catch (Exception e) {
 			e.printStackTrace();
 			 log.error(e.getMessage());
-			 throw new BusinessOrderException("BO00013");//查询订单异常
+			 throw new BusinessOrderException("BO0013");//查询订单异常
 		}
 		return order;
 		
@@ -62,11 +62,11 @@ public class QueryOrderServiceImpl implements QueryOrderService{
 		} catch (PaymentOrderException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			throw new BusinessOrderException("BO0014");//查询实时代付订单失败
+			throw new BusinessOrderException("BO00014");//查询实时代付订单失败
 		}catch (Exception e) {
 			e.printStackTrace();
 			 log.error(e.getMessage());
-			 throw new BusinessOrderException("BO00015");//查询实时代付订单异常
+			 throw new BusinessOrderException("BO0015");//查询实时代付订单异常
 		}
 		return order;
 	}

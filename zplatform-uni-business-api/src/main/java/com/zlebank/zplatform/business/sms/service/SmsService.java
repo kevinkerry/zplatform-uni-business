@@ -17,12 +17,22 @@ public interface SmsService {
 	public ResultBean sendSmsCode(SmsBean bean) ;
 	 
 	/****
-	 * 交易类型获取短信验证
-	 * 前提：不绑卡
+	 * 交易获取短信验证
+	 * 匿名支付和账户余额支付发送短信
 	 * @param tn 
-	 * @param bindId
+	 * @param modulType
 	 * @param phone
 	 * @return
 	 */
-	public ResultBean sendSmsCode(String tn , String phone);
+	public ResultBean sendSmsCode(String tn, String phone);
+	
+	/****
+	 * 交易获取短信验证
+	 * 快捷支付发送短信
+	 * @param tn 
+	 * @param modulType
+	 * @param phone
+	 * @return
+	 */
+	public ResultBean sendSmsCode(String tn, String phone,String cardNo);
 }

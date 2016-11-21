@@ -44,4 +44,12 @@
 	<dubbo:reference  id="busPayPwdService"      interface="com.zlebank.zplatform.business.member.service.PayPwdService" version="1.0" />
 	
 	<dubbo:reference  id="busSmsService"      interface="com.zlebank.zplatform.business.sms.service.SmsService" version="1.0" />
+	<dubbo:reference  id="busOrderService"      interface="com.zlebank.zplatform.business.order.service.OrderService" version="1.0" />
+	<dubbo:reference  id="busQueryOrderService"      interface="com.zlebank.zplatform.business.order.service.QueryOrderService" version="1.0" />
+	<dubbo:reference  id="busRealnameService" interface="com.zlebank.zplatform.business.realname.service.RealnameService"  version="1.0" />
+	<dubbo:reference  id="busQuickPayService"  interface="com.zlebank.zplatform.business.pay.service.QuickPayService"  version="1.0" />
+	<dubbo:reference id="busCardService" interface="com.zlebank.zplatform.business.memberCard.service.CardService"   version="1.0" />
+	<dubbo:reference id="busQueryCardService" interface="com.zlebank.zplatform.business.memberCard.service.QueryCardService" version="1.0" />
+	<dubbo:reference id="busAccountPayService" interface="com.zlebank.zplatform.business.pay.service.AccountPayService" version="1.0" />
+
 </beans>

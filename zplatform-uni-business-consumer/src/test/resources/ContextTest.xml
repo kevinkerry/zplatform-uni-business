@@ -31,10 +31,8 @@
 		<!-- 注解方式配置 -->
 		<property name="packagesToScan">
 			<list>
-				<value>com.zlebank.zplatform.business.pojo.PojoCardBin</value>
-				<value>com.zlebank.zplatform.business.pojo.PojoCashBank</value>
-				<value>com.zlebank.zplatform.business.pojo.PojoMerchWhiteList</value>
-				<value>com.zlebank.zplatform.sms.pojo.PojoSmsModule</value>
+				<value>com.zlebank.zplatform.business.pojo</value>
+				<value>com.zlebank.zplatform.sms.pojo</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

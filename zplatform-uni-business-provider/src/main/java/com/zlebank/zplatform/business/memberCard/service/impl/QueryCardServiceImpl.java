@@ -93,7 +93,7 @@ public class QueryCardServiceImpl implements QueryCardService {
 
 	@SuppressWarnings("null")
 	@Override
-	public PageVo<QueryCardResultBean> queryBindCardedList(QueryCardBean query, int page, int pageSize) throws BusinessCardException {
+	public PageVo<QueryCardResultBean> queryBindCardList(QueryCardBean query, int page, int pageSize) throws BusinessCardException {
 		if(query==null){
 			throw new BusinessCardException("BD0000");
 		}

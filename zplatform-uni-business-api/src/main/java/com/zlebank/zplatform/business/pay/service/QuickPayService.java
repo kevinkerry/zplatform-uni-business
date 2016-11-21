@@ -1,8 +1,8 @@
-package com.zlebank.zplatform.business.quickPay.service;
+package com.zlebank.zplatform.business.pay.service;
 
 import com.zlebank.zplatform.business.commons.bean.ResultBean;
 import com.zlebank.zplatform.business.exception.BusinessPayException;
-import com.zlebank.zplatform.business.quickPay.bean.PayBean;
+import com.zlebank.zplatform.business.pay.bean.PayBean;
 
 /***
  * 支付相关

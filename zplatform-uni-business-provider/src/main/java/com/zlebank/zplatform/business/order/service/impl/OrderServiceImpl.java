@@ -36,17 +36,19 @@ public class OrderServiceImpl implements OrderService{
 	private MemberOperationService memberOperationService;
     
 
-	public String createConsumeOrder(OrderBean order) throws BusinessOrderException {
+	public ResultBean createConsumeOrder(OrderBean order) throws BusinessOrderException {
 		try {
 			if(order==null){
 				throw new BusinessOrderException("BO0000");
 			}
 			SimpleOrderBean orderBean=BeanCopyUtil.copyBean(SimpleOrderBean.class, order);
-			return this.orderService.createConsumeOrder(orderBean);
+		    String tn= this.orderService.createConsumeOrder(orderBean);
+		    return new ResultBean(tn);
 		}  catch (PaymentOrderException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			throw new BusinessOrderException("BO0001");//创建消费订单失败
+			return new ResultBean("BO0001", e.getMessage());
+			//throw new BusinessOrderException("BO0001",e.getMessage());//创建消费订单失败
 		}catch (Exception e) {
 			e.printStackTrace();
 			 log.error(e.getMessage());
@@ -54,18 +56,20 @@ public class OrderServiceImpl implements OrderService{
 		}
 	}
 
-	public String createRefundOrder(RefundOrderBean order)throws BusinessOrderException {
+	public ResultBean createRefundOrder(RefundOrderBean order)throws BusinessOrderException {
 		try {
 			if(order==null){
 				throw new BusinessOrderException("BO0000");
 			}
 			com.zlebank.zplatform.payment.order.bean.RefundOrderBean refundOrderBean=
 					BeanCopyUtil.copyBean(com.zlebank.zplatform.payment.order.bean.RefundOrderBean.class, order);
-			return this.orderService.createRefundOrder(refundOrderBean);
+			String tn= this.orderService.createRefundOrder(refundOrderBean);
+			return new ResultBean(tn);
 		}  catch (PaymentOrderException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			throw new BusinessOrderException("BO0003");//创建退款订单失败
+			return new ResultBean("BO0003", e.getMessage());
+			//throw new BusinessOrderException("BO0003");//创建退款订单失败
 		}catch (Exception e) {
 			e.printStackTrace();
 			 log.error(e.getMessage());
@@ -73,17 +77,19 @@ public class OrderServiceImpl implements OrderService{
 		}
 	}
 
-	public String createInsteadPayOrder(InstPayOrderBean order)throws BusinessOrderException {
+	public ResultBean createInsteadPayOrder(InstPayOrderBean order)throws BusinessOrderException {
 			try {
 				if(order==null){
 					throw new BusinessOrderException("BO0000");
 				}
 				InsteadPayOrderBean orderBean=BeanCopyUtil.copyBean(InsteadPayOrderBean.class, order);
-				return this.orderService.createInsteadPayOrder(orderBean);
+				String tn=this.orderService.createInsteadPayOrder(orderBean);
+				 return new ResultBean(tn);
 			} catch (PaymentOrderException e) {
 				 e.printStackTrace();
 				 log.error(e.getMessage());
-				 throw new BusinessOrderException("BO0005");//创建实时代付订单失败
+				 return new ResultBean("BO0005", e.getMessage());
+				// throw new BusinessOrderException("BO0005");//创建实时代付订单失败
 			} catch (Exception e) {
 				e.printStackTrace();
 				 log.error(e.getMessage());
@@ -93,17 +99,18 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public String recharge(OrderBean order) throws BusinessOrderException {
+	public ResultBean recharge(OrderBean order) throws BusinessOrderException {
 		try {
 			if(order==null){
 				throw new BusinessOrderException("BO0000");
 			}
 			SimpleOrderBean orderBean=BeanCopyUtil.copyBean(SimpleOrderBean.class, order);
-			return this.orderService.createRechargeOrder(orderBean);
+			String tn= this.orderService.createRechargeOrder(orderBean);
+			return new ResultBean(tn);
 		} catch (PaymentOrderException e) {
 			 e.printStackTrace();
 			 log.error(e.getMessage());
-			 throw new BusinessOrderException("BO0007");//创建充值订单失败
+			 return new ResultBean("BO0007", e.getMessage());//创建充值订单失败
 		} catch (Exception e) {
 			e.printStackTrace();
 			 log.error(e.getMessage());
@@ -112,13 +119,14 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public String withdraw(WapWithdrawBean withdrawBean) throws BusinessOrderException {
+	public ResultBean withdraw(WapWithdrawBean withdrawBean) throws BusinessOrderException {
 		try {
 			if(withdrawBean==null){
 				throw new BusinessOrderException("BO0000");
 			}
 			WithdrawOrderBean withdrawOrderBean = BeanCopyUtil.copyBean(WithdrawOrderBean.class, withdrawBean);
-			return this.orderService.createWithdrawOrder(withdrawOrderBean);
+			String tn= this.orderService.createWithdrawOrder(withdrawOrderBean);
+			return new ResultBean(tn);
 		} catch (Exception e) {
 			e.printStackTrace();
 			 log.error(e.getMessage());
@@ -127,7 +135,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public String withdraw(WapWithdrawBean withdrawBean, String payPwd) throws BusinessOrderException {
+	public ResultBean withdraw(WapWithdrawBean withdrawBean, String payPwd) throws BusinessOrderException {
 		try {
 			if(withdrawBean==null || withdrawBean.getMemberId() ==null ||payPwd==null){
 				throw new BusinessOrderException("BO0000");
@@ -148,7 +156,8 @@ public class OrderServiceImpl implements OrderService{
 				throw new BusinessOrderException("BO0011");//校验支付密码失败
 			}
 			WithdrawOrderBean withdrawOrderBean = BeanCopyUtil.copyBean(WithdrawOrderBean.class, withdrawBean);
-			return this.orderService.createWithdrawOrder(withdrawOrderBean);
+			String tn =this.orderService.createWithdrawOrder(withdrawOrderBean);
+			return new ResultBean(tn);
 		} catch (Exception e) {
 			e.printStackTrace();
 			 log.error(e.getMessage());

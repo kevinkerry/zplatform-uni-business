@@ -30,18 +30,21 @@ public class RealnameServiceImpl implements RealnameService {
 			}
 			realnameBean = BeanCopyUtil.copyBean(RealNameCardBean.class, bean);
 			com.zlebank.zplatform.payment.commons.bean.ResultBean resultBean =this.realNameCardService.realName(realnameBean);
-			if(result!=null){
+			if(resultBean!=null){
 				result = BeanCopyUtil.copyBean(ResultBean.class, resultBean);
+			}else{
+				result= new ResultBean("BR0001", "实名认证失败");
 			}
 		}catch (PaymentRealNameException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			result = new ResultBean("BR0001", "实名认证失败"); 
+			result = new ResultBean("BR0001", "实名认证失败："+e.getMessage()); 
 		}catch (Exception  e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			result = new ResultBean("BR0002", "实名认证失败"); 
+			result = new ResultBean("BR0002", "实名认证异常"); 
 		}	
+		
 		return result;
 	}
 
