@@ -18,6 +18,7 @@ import com.alibaba.dubbo.common.json.JSONObject;
 import com.alibaba.fastjson.JSON;
 import com.zlebank.zplatform.business.commons.bean.ResultBean;
 import com.zlebank.zplatform.business.exception.BusinessOrderException;
+import com.zlebank.zplatform.business.order.bean.InstPayOrderBean;
 import com.zlebank.zplatform.business.order.bean.OrderBean;
 import com.zlebank.zplatform.business.order.bean.RefundOrderBean;
 import com.zlebank.zplatform.business.order.bean.WapWithdrawBean;
@@ -131,6 +132,32 @@ public class OrderServiceTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	@Test
+	public void createInstPay(){
+		InstPayOrderBean order = new InstPayOrderBean();
+		order.setTxnSubType("00");
+		order.setTxnType("06");
+		order.setBizType("000210");
+		order.setCoopInstiId("300000000000014");
+		order.setOrderId(getOrderNo());
+		order.setTxnTime(getTxnTime());
+		order.setMerId("200000000000597");
+		order.setAccType("01");
+		order.setAccName("刘班");
+		order.setAccNo("6217730706921465");
+		order.setTxnAmt("1");
+		order.setBackUrl("http://www.baidu.com");
+		order.setCertifId("410726198801032462");
+		order.setCertifTp("02");
+		order.setCurrencyCode("156");
+		try {
+			this.orderService.createInsteadPayOrder(order);
+		} catch (BusinessOrderException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public String getOrderNo(){
