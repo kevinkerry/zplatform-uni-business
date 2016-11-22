@@ -19,6 +19,8 @@ import com.alibaba.fastjson.JSON;
 import com.zlebank.zplatform.business.commons.bean.ResultBean;
 import com.zlebank.zplatform.business.exception.BusinessOrderException;
 import com.zlebank.zplatform.business.order.bean.OrderBean;
+import com.zlebank.zplatform.business.order.bean.RefundOrderBean;
+import com.zlebank.zplatform.business.order.bean.WapWithdrawBean;
 import com.zlebank.zplatform.business.order.service.OrderService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/*.xml")
@@ -35,9 +37,9 @@ public class OrderServiceTest {
 			order.setBizType("000205");
 			order.setCurrencyCode("156");
 			order.setChannelType("00");
-			order.setCoopInstiId("300000000000027");
+			order.setCoopInstiId("300000000000014");
 			order.setMerAbbr("天翼分集团");
-			order.setMerId("200000000000615");
+			order.setMerId("200000000000597");
 			order.setMerName("天翼分集团");
 			order.setTxnAmt("1");
 			order.setTxnTime(getTxnTime());
@@ -61,9 +63,9 @@ public class OrderServiceTest {
 	public void recharge(){
 		try {
 			OrderBean order = new OrderBean();
-			order.setTxnType("17");
+			order.setTxnType("02");
 			order.setTxnSubType("00");
-			order.setBizType("000205");
+			order.setBizType("000201");
 			order.setCurrencyCode("156");
 			order.setChannelType("00");
 			order.setCoopInstiId("300000000000027");
@@ -87,7 +89,49 @@ public class OrderServiceTest {
 			e.printStackTrace();
 		}
 	}
-	
+	@Test
+	public void refund(){
+		RefundOrderBean order = new RefundOrderBean();
+		order.setTxnSubType("00");
+		order.setTxnType("14");
+		order.setBizType("000203");
+		order.setCoopInstiId("300000000000014");
+		order.setMemberId("100000000001003");
+		order.setMerId("200000000000597");
+		order.setOrderDesc("退款订单");
+		order.setOrderId(getOrderNo());
+		order.setOrigOrderId("2016112209288495");
+		order.setOrigTN("161122059700000656");
+		order.setTxnAmt("1");
+		order.setTxnTime(getTxnTime());
+		try {
+			this.orderService.createRefundOrder(order);
+		} catch (BusinessOrderException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void withdraw(){
+		WapWithdrawBean order = new WapWithdrawBean();
+		order.setTxnSubType("00");
+		order.setTxnType("07");
+		order.setBizType("000204");
+		order.setCoopInstiId("300000000000027");
+		order.setMemberId("100000000001003");
+		order.setMerId("200000000000615");
+		order.setAmount("1");
+		order.setBindId("221");
+		order.setOrderId(getOrderNo());
+		order.setAmount("1");
+		order.setTxnTime(getTxnTime());
+		try {
+			this.orderService.withdraw(order);
+		} catch (BusinessOrderException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	public String getOrderNo(){
 		String time = new SimpleDateFormat("yyyyMMddHH").format(new Date());

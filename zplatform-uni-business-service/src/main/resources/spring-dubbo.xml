@@ -29,6 +29,11 @@
 	<dubbo:service interface="com.zlebank.zplatform.business.realname.service.RealnameService" ref="busRealnameService" retries="0" version="1.0" timeout="60000"/>
 	<!-- 短信 -->
 	<dubbo:service interface="com.zlebank.zplatform.business.sms.service.SmsService" ref="busSmsService" retries="0" version="1.0" timeout="60000"/>
+	<!-- 短信 -->
+	<dubbo:service interface="com.zlebank.zplatform.business.pay.service.RealtimeInstPayService" ref="busRealtimeInstPayService" retries="0" version="1.0" timeout="60000"/>
+	<!-- 查询卡 -->
+	<dubbo:service interface="com.zlebank.zplatform.business.memberCard.service.QueryCardService" ref="busQueryCardService" retries="0" version="1.0" timeout="60000"></dubbo:service>
+	
 	
 	<!-- 订阅服务 -->
 	<dubbo:reference id="memberService" interface="com.zlebank.zplatform.member.individual.service.MemberService" version="1.0"/>
@@ -43,6 +48,6 @@
 	<dubbo:reference id="realNameCardService" interface="com.zlebank.zplatform.payment.realname.service.RealNameCardService" version="1.0"/>
 	<dubbo:reference id="quickPayService" interface="com.zlebank.zplatform.payment.quickpay.service.QuickPayService" version="1.0"/>
 	<dubbo:reference id="accountPayService" interface="com.zlebank.zplatform.payment.accpay.service.AccountPayService" version="1.0"/>
-	
+	<dubbo:reference id="realtimeInstPayService" interface="com.zlebank.zplatform.payment.quickpay.service.RealTimeInsteadPayService" version="1.0"/>
 	
 </beans>

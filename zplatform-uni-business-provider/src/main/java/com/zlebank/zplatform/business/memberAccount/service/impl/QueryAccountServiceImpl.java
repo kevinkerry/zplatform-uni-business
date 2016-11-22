@@ -41,7 +41,7 @@ public class QueryAccountServiceImpl implements QueryAccountService {
         	com.zlebank.zplatform.member.individual.bean.MemberAccountBean account = 
         			memberAccountService.queryBalance(MemberType.INDIVIDUAL, member, Usage.BASICPAY);
         	if(account!=null){
-        		BeanCopyUtil.copyBean(MemberAccountBean.class, account);
+        		memberAccount = BeanCopyUtil.copyBean(MemberAccountBean.class, account);
         	}
         }catch (GetAccountFailedException e) {
 			e.printStackTrace();
@@ -62,27 +62,22 @@ public class QueryAccountServiceImpl implements QueryAccountService {
 		if(memberId == null ){
 			throw new BusinessAccountException("BA0000");//参数不能为空
 		}
-		 MemberBean member = new MemberBean();
-        member.setMemberId(memberId);
-        com.zlebank.zplatform.member.commons.bean.PagedResult<MemberBalanceDetailBean> entrys = null;
-        try {
-			entrys = memberAccountService.queryBalanceDetail(
-			        MemberType.INDIVIDUAL, member, page, pageSize);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        if (entrys == null) {
-            return null;
-        }
         List<MemInAndExDetailBean> memInAndExDetailList = new ArrayList<MemInAndExDetailBean>();
         try {
+        	 MemberBean member = new MemberBean();
+             member.setMemberId(memberId);
+             com.zlebank.zplatform.member.commons.bean.PagedResult<MemberBalanceDetailBean> entrys = 
+            		 memberAccountService.queryBalanceDetail(MemberType.INDIVIDUAL, member, page, pageSize);
+        	 if (entrys == null) {
+                 return null;
+             }
 			for (MemberBalanceDetailBean memberBalanceDetailBean : entrys
 			        .getPagedResult()) {
-			    MemInAndExDetailBean memInAndExDetail = new MemInAndExDetailBean();
-			    BeanUtils.copyProperties(memberBalanceDetailBean, memInAndExDetail);
+			    MemInAndExDetailBean memInAndExDetail = BeanCopyUtil.copyBean(MemInAndExDetailBean.class, memberBalanceDetailBean);
 			    memInAndExDetailList.add(memInAndExDetail);
 			}
+			 pageVo.setList(memInAndExDetailList);
+		     pageVo.setTotal((int) entrys.getTotal());
 		} catch (BeansException | IllegalAccessException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
@@ -92,8 +87,6 @@ public class QueryAccountServiceImpl implements QueryAccountService {
 			log.error(e.getMessage());
 			throw new BusinessAccountException("BA0004");//查询余额异常
 		}
-        pageVo.setList(memInAndExDetailList);
-        pageVo.setTotal((int) entrys.getTotal());
         return pageVo;
 	}
 

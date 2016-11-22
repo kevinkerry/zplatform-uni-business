@@ -319,5 +319,7 @@
    <modules>
 		<module>../zplatform-uni-business-api</module> 
 		<module>../zplatform-uni-business-provider</module> 
+		<module>../zplatform-uni-business-service</module> 
+		<module>../zplatform-uni-business-common</module>
 	</modules>
 </project>

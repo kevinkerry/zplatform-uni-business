@@ -28,16 +28,7 @@ public class AccountpayServiceTest {
 	private AccountPayService  accountPayService;
 	@Test
 	public void payBySmsCode(){
-		/*try {
-			AccountPayBean account = new AccountPayBean();
-			account.setMemberId(memberId);
-			account.setTn(tn);
-			account.setTxnAmt(txnAmt);
-			ResultBean bean =this.accountPayService.pay(account);
-			System.out.println(JSON.toJSONString(bean));
-		}  catch(Exception e){
-			e.printStackTrace();
-		}*/
+	
 	}
 	
 	@Test
@@ -45,7 +36,7 @@ public class AccountpayServiceTest {
 		try {
 			AccountPayBean account = new AccountPayBean();
 			account.setMemberId("100000000001003");
-			account.setTn("161118061500000602");
+			account.setTn("161122059700000656");
 			account.setTxnAmt("1");
 			ResultBean bean =this.accountPayService.pay(account);
 			System.out.println(JSON.toJSONString(bean));

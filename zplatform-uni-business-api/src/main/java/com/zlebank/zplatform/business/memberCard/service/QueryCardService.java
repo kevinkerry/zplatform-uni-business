@@ -1,13 +1,11 @@
 package com.zlebank.zplatform.business.memberCard.service;
 
-import java.util.List;
-
-import com.zlebank.zplatform.business.memberCard.bean.QueryCardResultBean;
-import com.zlebank.zplatform.business.memberCard.bean.QueryCashBankResultBean;
 import com.zlebank.zplatform.business.commons.bean.PageVo;
 import com.zlebank.zplatform.business.exception.BusinessCardException;
 import com.zlebank.zplatform.business.memberCard.bean.CardBinResultBean;
 import com.zlebank.zplatform.business.memberCard.bean.QueryCardBean;
+import com.zlebank.zplatform.business.memberCard.bean.QueryCardResultBean;
+import com.zlebank.zplatform.business.memberCard.bean.QueryCashBankResultBean;
 import com.zlebank.zplatform.business.memberCard.bean.QuerySupporedCardBean;
 import com.zlebank.zplatform.business.memberCard.bean.QuerySupportedCardResultBean;
 
@@ -44,5 +42,5 @@ public interface QueryCardService {
      * @param bankCode
      * @return
      */
-    public QueryCashBankResultBean getBankICON(String bankCode) throws BusinessCardException;
+    public QueryCashBankResultBean getBankIcon(String bankCode) throws BusinessCardException;
 }

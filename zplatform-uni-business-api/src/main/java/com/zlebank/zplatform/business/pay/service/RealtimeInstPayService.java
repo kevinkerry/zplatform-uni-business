@@ -5,7 +5,7 @@ import com.zlebank.zplatform.business.pay.bean.RealTimeInstPayBean;
 
 public interface RealtimeInstPayService {
 	/****
-	 * 快捷支付(无短信验证、无支付密码)
+	 * 单笔支付(无短信验证、无支付密码)
 	 * @param bean
 	 * @return
 	 */

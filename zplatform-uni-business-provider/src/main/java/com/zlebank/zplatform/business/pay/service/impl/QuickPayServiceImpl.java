@@ -345,7 +345,7 @@ public class QuickPayServiceImpl implements QuickPayService{
 		}catch(Exception e){
 			e.printStackTrace();
 			log.error(e.getMessage());
-			resultBean = new ResultBean("BP00013", "快捷支付异常！");
+			resultBean = new ResultBean("BP00013", "支付异常！");
 		}
 		return resultBean;
 	}

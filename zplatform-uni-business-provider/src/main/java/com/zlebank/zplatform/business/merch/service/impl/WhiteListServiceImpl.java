@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zlebank.zplatform.business.commons.dao.MerchWhiteListDAO;
@@ -19,7 +20,7 @@ public class WhiteListServiceImpl implements WhiteListService {
 	@Autowired
 	private MerchWhiteListDAO merchWhiteListDAO;
 	@Override
-	@Transactional()
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
 	public boolean saveWhiteList(MerchWhiteBean merchWhiteList) throws BusinessMerchException {
 		if(merchWhiteList==null){
 			throw new BusinessMerchException("BT0000");//参数不能为空
@@ -36,8 +37,9 @@ public class WhiteListServiceImpl implements WhiteListService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
 	public boolean updateWhiteList(MerchWhiteBean merchWhiteList) throws BusinessMerchException {
-		if(merchWhiteList==null){
+		if(merchWhiteList==null ||merchWhiteList.getId()==null){
 			throw new BusinessMerchException("BT0000");//参数不能为空
 		}
 		PojoMerchWhiteList merchWhite = merchWhiteListDAO.getMerchWhiteListById(merchWhiteList.getId());
@@ -63,6 +65,7 @@ public class WhiteListServiceImpl implements WhiteListService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
 	public boolean deleteWhiteList(Long id) throws BusinessMerchException {
 		if(id==null){
 			throw new BusinessMerchException("BT0000");//参数不能为空

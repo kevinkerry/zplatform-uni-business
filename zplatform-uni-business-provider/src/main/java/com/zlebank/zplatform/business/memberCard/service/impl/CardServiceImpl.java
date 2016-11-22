@@ -5,12 +5,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zlebank.zplatform.business.commons.bean.CardBin;
 import com.zlebank.zplatform.business.commons.bean.ResultBean;
+import com.zlebank.zplatform.business.commons.dao.CardBinDAO;
 import com.zlebank.zplatform.business.commons.enums.SmsValidateEnum;
 import com.zlebank.zplatform.business.exception.BusinessCardException;
 import com.zlebank.zplatform.business.memberCard.bean.QuickCardBean;
 import com.zlebank.zplatform.business.memberCard.service.CardService;
 import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
+import com.zlebank.zplatform.member.commons.utils.StringUtil;
 import com.zlebank.zplatform.member.exception.DataCheckFailedException;
 import com.zlebank.zplatform.member.individual.bean.MemberBean;
 import com.zlebank.zplatform.member.individual.bean.PoMemberBean;
@@ -33,6 +36,8 @@ public class CardServiceImpl implements CardService {
 	private MemberOperationService memberOperationService;
 	@Autowired
 	private ISMSService smsService;
+	@Autowired
+	private CardBinDAO cardBinDAO;
 	@Override
 	public ResultBean bindCard(QuickCardBean card) throws BusinessCardException {
 		if(card == null ){
@@ -40,6 +45,14 @@ public class CardServiceImpl implements CardService {
 		}
 		try {
 			QuickpayCustBean quickpayCustBean = BeanCopyUtil.copyBean(QuickpayCustBean.class, card);
+			if(quickpayCustBean != null && StringUtil.isEmpty(quickpayCustBean.getBankcode())){
+				CardBin cardBin= this.cardBinDAO.getCard(card.getCardno());
+				if (cardBin == null){
+					throw new BusinessCardException("BD0008");
+				}
+				quickpayCustBean.setBankcode(cardBin.getBankCode()+"0000");
+				quickpayCustBean.setBankname(cardBin.getBankName());
+			}
 			long bindId=memberBankCardService.saveQuickPayCust(quickpayCustBean);
 			return new ResultBean(bindId);
 		} catch (Exception e) {

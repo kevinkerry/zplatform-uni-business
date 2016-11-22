@@ -1,7 +1,13 @@
 package com.zlebank.zplatform.business.memberCard.bean;
 
-public class QueryCardBean {
-    private String memberId;
+import java.io.Serializable;
+
+public class QueryCardBean implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1600861586706026286L;
+	private String memberId;
     private String cardType;
     private String devId;
 	public String getMemberId() {

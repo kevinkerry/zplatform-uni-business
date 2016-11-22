@@ -78,8 +78,8 @@ public class QuickpayServiceTest {
 	public void payByBindId(){
 		try {
 			PayBean pay= new PayBean();
-			pay.setTn("161118061500000598");
-			pay.setBindId("219");
+			pay.setTn("161122061500000654");
+			pay.setBindId("221");
 			pay.setTxnAmt("251");
 			ResultBean bean =this.quickPayService.pay(pay);
 			System.out.println(JSON.toJSONString(bean));

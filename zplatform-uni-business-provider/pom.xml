@@ -9,10 +9,9 @@
 	</parent>
   <artifactId>zplatform-uni-business-provider</artifactId>
   <packaging>jar</packaging>
-
   <name>zplatform-uni-business-provider</name>
   <url>http://maven.apache.org</url>
-
+  <description>证联支付平台-统一个人业务服务API</description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>

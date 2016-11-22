@@ -48,7 +48,12 @@ public class QueryCardServiceImpl implements QueryCardService {
 			throw new BusinessCardException("BD0000");
 		}
 		CardBin cardBin= this.cardBinDAO.getCard(cardNo);
-		return BeanCopyUtil.copyBean(CardBinResultBean.class, cardBin);
+		if (cardBin == null){
+		    return null;
+		}
+		CardBinResultBean result=BeanCopyUtil.copyBean(CardBinResultBean.class, cardBin);
+		result.setBankCode(cardBin.getBankCode()+"0000");
+		return result;
 	}
 
 	@Override
@@ -97,11 +102,13 @@ public class QueryCardServiceImpl implements QueryCardService {
 		if(query==null){
 			throw new BusinessCardException("BD0000");
 		}
-		PageVo<QueryCardResultBean> pageVoList =null;
+		PageVo<QueryCardResultBean> pageVoList =new PageVo<QueryCardResultBean>();
 		List<QueryCardResultBean> voList=new ArrayList<QueryCardResultBean>();
+		int total =0;
 		if(query!=null){
 			PagedResult<QuickpayCustBean> cardList= memberBankCardService.queryMemberBankCard(query.getMemberId(), query.getCardType(), query.getDevId(), page, pageSize);
 			try {
+				total= (int)cardList.getTotal();
 				for (QuickpayCustBean item : cardList.getPagedResult()){
 					voList.add(BeanCopyUtil.copyBean(QueryCardResultBean.class, item));
 				}
@@ -112,12 +119,12 @@ public class QueryCardServiceImpl implements QueryCardService {
 			}
 		}
 		pageVoList.setList(voList);
-		pageVoList.setTotal(voList.size());
+		pageVoList.setTotal(total);
 		return pageVoList;
 	}
 
 	@Override
-	public QueryCashBankResultBean getBankICON(String bankCode) throws BusinessCardException {
+	public QueryCashBankResultBean getBankIcon(String bankCode) throws BusinessCardException {
 		QueryCashBankResultBean result = null;
 		if(StringUtil.isEmpty(bankCode)){
 			throw new BusinessCardException("BD0000");

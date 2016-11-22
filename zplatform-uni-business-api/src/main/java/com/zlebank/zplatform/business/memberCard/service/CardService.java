@@ -3,7 +3,6 @@ package com.zlebank.zplatform.business.memberCard.service;
 import com.zlebank.zplatform.business.commons.bean.ResultBean;
 import com.zlebank.zplatform.business.exception.BusinessCardException;
 import com.zlebank.zplatform.business.memberCard.bean.QuickCardBean;
-import com.zlebank.zplatform.business.memberCard.bean.UnBindCardBean;
 
 /***
  * 用户绑卡相关

@@ -51,5 +51,9 @@
 	<dubbo:reference id="busCardService" interface="com.zlebank.zplatform.business.memberCard.service.CardService"   version="1.0" />
 	<dubbo:reference id="busQueryCardService" interface="com.zlebank.zplatform.business.memberCard.service.QueryCardService" version="1.0" />
 	<dubbo:reference id="busAccountPayService" interface="com.zlebank.zplatform.business.pay.service.AccountPayService" version="1.0" />
+    
+	<dubbo:reference  id="busMerchService"  interface="com.zlebank.zplatform.business.merch.service.MerchService" version="1.0" />
+	<dubbo:reference  id="busWhiteListService" interface="com.zlebank.zplatform.business.merch.service.WhiteListService"  version="1.0" />
 
+    <dubbo:reference  id="busQueryAccountService" interface="com.zlebank.zplatform.business.memberAccount.service.QueryAccountService" version="1.0"/>
 </beans>

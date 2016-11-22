@@ -22,13 +22,44 @@ public class CardServiceTest {
 	public void bindCard(){
 		QuickCardBean card = new QuickCardBean();
 		card.setRelatememberno("100000000001003");
+		card.setAccname("刘玉婷");
+		card.setCardno("6217730706921469");
+		card.setCardtype("1");
+		card.setIdnum("41072198001032453");
+		card.setPhone("18210457410");
+		try {
+			ResultBean bean =this.cardService.bindCard(card);
+			System.out.println(JSON.toJSONString(bean));
+		} catch (BusinessCardException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Test
+	public void bindCardNew(){
+		QuickCardBean card = new QuickCardBean();
+		card.setRelatememberno("100000000001003");
 		card.setAccname("刘玉");
-		card.setCardno("6217730706921466");
+		card.setCardno("6217730706921467");
 		card.setCardtype("1");
 		card.setIdnum("41072198001032452");
 		card.setPhone("18210457410");
 		try {
 			ResultBean bean =this.cardService.bindCard(card);
+			System.out.println(JSON.toJSONString(bean));
+		} catch (BusinessCardException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Test
+	public void unbindCardNew(){
+		try {
+			ResultBean bean =this.cardService.unBindCard("100000000001003", "220");
 			System.out.println(JSON.toJSONString(bean));
 		} catch (BusinessCardException e) {
 			// TODO Auto-generated catch block

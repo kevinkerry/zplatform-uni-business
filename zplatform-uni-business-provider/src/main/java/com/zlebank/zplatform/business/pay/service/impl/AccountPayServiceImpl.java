@@ -79,10 +79,10 @@ public class AccountPayServiceImpl implements AccountPayService{
 		} catch (PaymentOrderException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			resultBean = new ResultBean("BP0001", "订单查询异常！");
+			resultBean = new ResultBean("BP0001", "订单查询异常："+e.getMessage());
 		}catch(PaymentAccountPayException e){
 			log.error(e.getMessage());
-			resultBean = new ResultBean("BP0016", "账户支付异常！");
+			resultBean = new ResultBean("BP0016", "账户支付异常："+e.getMessage());
 		}catch(Exception e){
 			e.printStackTrace();
 			log.error(e.getMessage());
@@ -141,10 +141,10 @@ public class AccountPayServiceImpl implements AccountPayService{
 		} catch (PaymentOrderException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			resultBean = new ResultBean("BP0001", "订单查询异常！");
+			resultBean = new ResultBean("BP0001", "订单查询异常："+e.getMessage());
 		}catch(PaymentAccountPayException e){
 			log.error(e.getMessage());
-			resultBean = new ResultBean("BP0016", "账户支付异常！");
+			resultBean = new ResultBean("BP0016", "账户支付异常："+e.getMessage());
 		}catch(Exception e){
 			e.printStackTrace();
 			log.error(e.getMessage());
@@ -201,10 +201,10 @@ public class AccountPayServiceImpl implements AccountPayService{
 		}catch (PaymentOrderException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			resultBean = new ResultBean("BP0001", "订单查询异常！");
+			resultBean = new ResultBean("BP0001", "订单查询异常："+e.getMessage());
 		}catch(PaymentAccountPayException e){
 			log.error(e.getMessage());
-			resultBean = new ResultBean("BP0016", "账户支付异常！");
+			resultBean = new ResultBean("BP0016", "账户支付异常："+e.getMessage());
 		}catch(Exception e){
 			e.printStackTrace();
 			log.error(e.getMessage());
@@ -275,10 +275,10 @@ public class AccountPayServiceImpl implements AccountPayService{
 		}catch (PaymentOrderException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
-			resultBean = new ResultBean("BP0001", "订单查询异常！");
+			resultBean = new ResultBean("BP0001", "订单查询异常："+e.getMessage());
 		}catch(PaymentAccountPayException e){
 			log.error(e.getMessage());
-			resultBean = new ResultBean("BP0016", "账户支付异常！");
+			resultBean = new ResultBean("BP0016", "账户支付异常！"+e.getMessage());
 		}catch(Exception e){
 			e.printStackTrace();
 			log.error(e.getMessage());

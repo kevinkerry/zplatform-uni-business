@@ -1,10 +1,17 @@
 package com.zlebank.zplatform.business.memberCard.bean;
+
+import java.io.Serializable;
+
 /**
  * bank bean
  * @author yangying
  *
  */
-public class Bank {
+public class Bank implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5543233480246907369L;
 	/**银行代码*/
 	private String bankCode;
 	/**银行名称*/

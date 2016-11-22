@@ -1,8 +1,11 @@
 package com.zlebank.zplatform.business.commons.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PageVo<T> {
+public class PageVo<T> implements Serializable {
+	
+	private static final long serialVersionUID = -6201007489473238659L;
 	//列表
 	public List<T> list;
 	//总条数
