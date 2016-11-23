@@ -32,9 +32,14 @@ public class QueryCoopInstServiceImpl implements QueryCoopInstService {
 		CoopInstiMK mk = this.coopInstiService.getCoopInstiMK(coopInstCode, term);
 		if(mk==null)return null;
 		
-		CoopInstMkBean result = BeanCopyUtil.copyBean(CoopInstMkBean.class, mk);
+		CoopInstMkBean result = new CoopInstMkBean();
+		//BeanCopyUtil.copyBean(CoopInstMkBean.class, mk);
 		result.setTerminalAccessType(String.valueOf(mk.getTerminalAccessType().getCode()));
 		result.setEncryptAlgorithm(mk.getEncryptAlgorithm().getAlgName());
+		result.setInstiPriKey(mk.getInstiPriKey());
+		result.setInstiPubKey(mk.getInstiPubKey());
+		result.setZplatformPriKey(mk.getZplatformPriKey());
+		result.setZplatformPubKey(mk.getZplatformPubKey());
 		return result;
 	}
 

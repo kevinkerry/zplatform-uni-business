@@ -81,7 +81,7 @@
     
     
 	<context:component-scan base-package="com.zlebank.zplatform"/>
-	<bean id="logHelper" class="com.zlebank.zplatform.business.utils.LogHelper"/>
+	<bean id="logHelper" class="com.zlebank.zplatform.utils.LogHelper"/>
 	<aop:config>
 	    <aop:aspect ref="logHelper">
 	        <aop:pointcut id="pointcut" expression="execution(* com.zlebank.zplatform..*.*(..))"/>

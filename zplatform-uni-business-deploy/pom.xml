@@ -321,5 +321,6 @@
 		<module>../zplatform-uni-business-provider</module> 
 		<module>../zplatform-uni-business-service</module> 
 		<module>../zplatform-uni-business-common</module>
+		<module>../zplatform-uni-business-simple</module>
 	</modules>
 </project>
