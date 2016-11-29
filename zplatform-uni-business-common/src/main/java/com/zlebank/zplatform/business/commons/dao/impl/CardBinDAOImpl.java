@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zlebank.zplatform.business.commons.bean.CardBin;
 import com.zlebank.zplatform.business.commons.dao.CardBinDAO;
+import com.zlebank.zplatform.business.commons.dao.base.HibernateBaseDAOImpl;
 import com.zlebank.zplatform.business.pojo.PojoCardBin;
 /***
  * liusm

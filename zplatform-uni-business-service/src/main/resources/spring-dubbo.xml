@@ -38,6 +38,9 @@
 	<dubbo:service interface="com.zlebank.zplatform.business.enterprise.service.QueryEnterpriseService" ref="busQueryEnterpriseService" retries="0" version="1.0" timeout="60000"></dubbo:service>
 	<!-- 合作机构 -->
 	<dubbo:service interface="com.zlebank.zplatform.business.coopinst.service.QueryCoopInstService" ref="busQueryCoopInstService" retries="0" version="1.0" timeout="60000"></dubbo:service>
+	<!-- 批量代付 -->
+	<dubbo:service interface="com.zlebank.zplatform.business.insteadPay.service.InsteadPayService" ref="busInsteadPayService" retries="0" version="1.0" timeout="60000"></dubbo:service>
+	<dubbo:service interface="com.zlebank.zplatform.business.insteadPay.service.QueryInsteadPayService" ref="busQueryInsteadPayService" retries="0" version="1.0" timeout="60000"></dubbo:service>
 	
 	<!-- 订阅服务 -->
 	<dubbo:reference id="memberService" interface="com.zlebank.zplatform.member.individual.service.MemberService" version="1.0"/>
@@ -53,4 +56,9 @@
 	<dubbo:reference id="accountPayService" interface="com.zlebank.zplatform.payment.accpay.service.AccountPayService" version="1.0"/>
 	<dubbo:reference id="realtimeInstPayService" interface="com.zlebank.zplatform.payment.quickpay.service.RealTimeInsteadPayService" version="1.0"/>
 	<dubbo:reference id="enterpriseService" interface="com.zlebank.zplatform.member.merchant.service.EnterpriseService"  version="1.0"></dubbo:reference>
+	<dubbo:reference id="merchService" interface="com.zlebank.zplatform.member.merchant.service.MerchService"  version="1.0"></dubbo:reference>
+	<dubbo:reference id="accEntryService" interface="com.zlebank.zplatform.acc.service.AccEntryService"  version="1.0"></dubbo:reference>
+	<dubbo:reference id="tradeFeeService" interface="com.zlebank.zplatform.fee.service.TradeFeeService"  version="1.0"></dubbo:reference>
+
+
 </beans>

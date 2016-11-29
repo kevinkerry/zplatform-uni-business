@@ -70,18 +70,18 @@ public class OrderServiceTest {
 			order.setCurrencyCode("156");
 			order.setChannelType("00");
 			order.setCoopInstiId("300000000000027");
-			order.setMerAbbr("天翼分集团");
-			order.setMerId("200000000000615");
-			order.setMerName("天翼分集团");
+			order.setMerAbbr("软件公司");
+			order.setMerId("200000000001014");
+			order.setMerName("软件公司");
 			order.setTxnAmt("251");
 			order.setTxnTime(getTxnTime());
 			order.setOrderId(getOrderNo());
-			order.setOrderDesc("测试互金");
+			order.setOrderDesc("充值");
 			order.setOrderTimeout(null);
 			order.setPayTimeout(getOrderTimeout());
 			order.setFrontUrl("http://www.baidu.com");
 			order.setBackUrl("http://www.baidu.com");
-			order.setMemberId("100000000001003");
+			order.setMemberId("100000000001013");
 			ResultBean bean =this.orderService.recharge(order);//161118061500000597
 			System.out.println(JSON.toJSONString(bean));
 		} catch (BusinessOrderException e) {

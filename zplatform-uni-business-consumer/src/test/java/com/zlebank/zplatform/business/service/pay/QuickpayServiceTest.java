@@ -51,9 +51,9 @@ public class QuickpayServiceTest {
 			pay.setCardType("1");
 			pay.setCertNo("41072198001032452");
 			pay.setCardKeeper("刘玉");
-			pay.setTn("161118061500000595");
-			pay.setTxnAmt("1");
-			ResultBean bean =this.quickPayService.pay(pay, "100000000001003", "195744", "123456");
+			pay.setTn("161125101400000679");
+			pay.setTxnAmt("251");
+			ResultBean bean =this.quickPayService.pay(pay);
 			System.out.println(JSON.toJSONString(bean));
 		}  catch(Exception e){
 			e.printStackTrace();

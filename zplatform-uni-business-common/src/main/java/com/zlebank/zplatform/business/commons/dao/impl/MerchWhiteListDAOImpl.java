@@ -7,11 +7,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zlebank.zplatform.business.commons.dao.MerchWhiteListDAO;
+import com.zlebank.zplatform.business.commons.dao.base.HibernateBaseDAOImpl;
 import com.zlebank.zplatform.business.pojo.PojoMerchWhiteList;
 @Repository("merchWhiteListDAO")
 public class MerchWhiteListDAOImpl extends HibernateBaseDAOImpl<PojoMerchWhiteList> implements MerchWhiteListDAO {
-
-
 	 /**
      * 得到指定的白名单信息
      * @param merId
@@ -34,7 +33,6 @@ public class MerchWhiteListDAOImpl extends HibernateBaseDAOImpl<PojoMerchWhiteLi
     }
 
 	/**
-	 *
 	 * @param id
 	 * @return
 	 */
@@ -44,6 +42,17 @@ public class MerchWhiteListDAOImpl extends HibernateBaseDAOImpl<PojoMerchWhiteLi
 		Criteria crite= this.getSession().createCriteria(PojoMerchWhiteList.class);
 		crite.add(Restrictions.eq("id", id));
 		return (PojoMerchWhiteList) crite.uniqueResult();
+	}
+
+	@Override
+	 @Transactional(readOnly=true)
+	public String checkMerchWhiteList(String merId, String accName, String accNo) {
+		 String rtn = null;
+        PojoMerchWhiteList oldPojo = this.getWhiteListByCardNoAndName(merId, accNo,accName);
+        if (oldPojo == null) {
+            rtn = String.format("(%s,%s)", accName,accNo);
+        }
+        return rtn;
 	}
 
 }

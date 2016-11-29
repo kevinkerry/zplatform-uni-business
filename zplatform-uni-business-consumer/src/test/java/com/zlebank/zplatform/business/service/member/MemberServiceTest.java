@@ -20,11 +20,11 @@ public class MemberServiceTest {
 		try {
 			RegisterMemberBean bean = new RegisterMemberBean();
 			bean.setCoopInstiCode("300000000000027");
-			bean.setLoginName("liusmm");
-			bean.setMemberName("liusm");
+			bean.setLoginName("liumm");
+			bean.setMemberName("liumm");
 			bean.setMemberStatus("00");
 			bean.setMemberType("01");
-			bean.setPhone("18210457413");
+			bean.setPhone("18210457400");
 			bean.setRegisterIdent("01");
 			bean.setPwd("l123456");
 			bean.setOperUserId(0);

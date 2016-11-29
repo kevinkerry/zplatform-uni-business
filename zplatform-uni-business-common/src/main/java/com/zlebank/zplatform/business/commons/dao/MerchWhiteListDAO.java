@@ -16,4 +16,6 @@ public interface MerchWhiteListDAO extends BaseDAO<PojoMerchWhiteList>{
      * @return
      */
     public PojoMerchWhiteList getMerchWhiteListById(Long id);
+
+	public String checkMerchWhiteList(String merId, String accName, String accNo);
 }

@@ -2,15 +2,23 @@
 
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zlebank.zplatform.business.commons.dao.TxncodeDefDAO;
+import com.zlebank.zplatform.business.commons.dao.base.HibernateBaseDAOImpl;
 import com.zlebank.zplatform.business.pojo.PojoTxncodeDef;
 @Repository("txncodeDefDAO")
 public class TxncodeDefDAOImpl extends HibernateBaseDAOImpl<PojoTxncodeDef> implements TxncodeDefDAO {
 	    
+	@Override
+	public Session getSession() {
+		return super.getSession();
+	}
+	
+	
 	@Transactional(readOnly=true)
     public PojoTxncodeDef getBusiCode(String txntype,String txnsubtype,String biztype){
 		Criteria crite= this.getSession().createCriteria(PojoTxncodeDef.class);

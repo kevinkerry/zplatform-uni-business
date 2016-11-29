@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zlebank.zplatform.business.commons.dao.CashBankDAO;
+import com.zlebank.zplatform.business.commons.dao.base.HibernateBaseDAOImpl;
 import com.zlebank.zplatform.business.pojo.PojoCashBank;
 @Repository("cashBankDAO")
 public class CashBankDAOImpl extends HibernateBaseDAOImpl<PojoCashBank> implements CashBankDAO {
