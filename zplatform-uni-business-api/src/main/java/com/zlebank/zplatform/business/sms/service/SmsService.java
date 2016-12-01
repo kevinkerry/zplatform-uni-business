@@ -19,8 +19,8 @@ public interface SmsService {
 	/****
 	 * 交易获取短信验证
 	 * 匿名支付和账户余额支付发送短信
+	 * modulType-1006
 	 * @param tn 
-	 * @param modulType
 	 * @param phone
 	 * @return
 	 */
@@ -29,9 +29,10 @@ public interface SmsService {
 	/****
 	 * 交易获取短信验证
 	 * 快捷支付发送短信
+	 * modulType-1002
 	 * @param tn 
-	 * @param modulType
 	 * @param phone
+	 * @param cardNo
 	 * @return
 	 */
 	public ResultBean sendSmsCode(String tn, String phone,String cardNo);
