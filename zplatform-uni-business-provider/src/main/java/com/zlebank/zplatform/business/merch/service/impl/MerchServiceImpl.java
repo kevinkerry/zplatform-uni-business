@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.zlebank.zplatform.business.exception.BusinessMerchException;
 import com.zlebank.zplatform.business.merch.service.MerchService;
-import com.zlebank.zplatform.commons.utils.StringUtil;
 import com.zlebank.zplatform.member.individual.bean.MemberBean;
 import com.zlebank.zplatform.member.individual.bean.PoMemberBean;
 import com.zlebank.zplatform.member.individual.bean.enums.MemberType;

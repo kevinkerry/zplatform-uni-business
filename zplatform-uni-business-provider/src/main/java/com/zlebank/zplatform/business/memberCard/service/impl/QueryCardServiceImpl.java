@@ -24,9 +24,8 @@ import com.zlebank.zplatform.business.memberCard.bean.QuerySupporedCardBean;
 import com.zlebank.zplatform.business.memberCard.bean.QuerySupportedCardResultBean;
 import com.zlebank.zplatform.business.memberCard.service.QueryCardService;
 import com.zlebank.zplatform.business.pojo.PojoCashBank;
-import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
-import com.zlebank.zplatform.commons.utils.StringUtil;
 import com.zlebank.zplatform.member.commons.bean.PagedResult;
+import com.zlebank.zplatform.member.commons.utils.BeanCopyUtil;
 import com.zlebank.zplatform.member.individual.bean.QuickpayCustBean;
 import com.zlebank.zplatform.member.individual.service.MemberBankCardService;
 @Service("busQueryCardService")

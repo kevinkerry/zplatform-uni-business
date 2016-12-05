@@ -12,8 +12,6 @@ package com.zlebank.zplatform.business.commons.bean;
 
 import java.util.List;
 
-import com.zlebank.zplatform.commons.bean.Bean;
-
 /**
  * 代付明细查询条件
  *
@@ -22,7 +20,7 @@ import com.zlebank.zplatform.commons.bean.Bean;
  * @date 2015年12月21日 下午7:56:48
  * @since 
  */
-public class InsteadPayDetailQuery implements Bean{
+public class InsteadPayDetailQuery {
     /**一级商户代码**/
     private String merId;
     /**账号类型01:银行卡;02:存折**/

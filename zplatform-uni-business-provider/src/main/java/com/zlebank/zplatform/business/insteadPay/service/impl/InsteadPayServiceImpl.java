@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.json.JSONObject;
+
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +43,10 @@ import com.zlebank.zplatform.business.insteadPay.service.InsteadPayService;
 import com.zlebank.zplatform.business.pojo.ConfigInfoModel;
 import com.zlebank.zplatform.business.pojo.PojoInsteadPayBatch;
 import com.zlebank.zplatform.business.pojo.PojoInsteadPayDetail;
-import com.zlebank.zplatform.commons.enums.BusinessCodeEnum;
-import com.zlebank.zplatform.commons.utils.DateUtil;
-import com.zlebank.zplatform.commons.utils.StringUtil;
 import com.zlebank.zplatform.fee.bean.FeeBean;
 import com.zlebank.zplatform.fee.exception.TradeFeeException;
 import com.zlebank.zplatform.fee.service.TradeFeeService;
+import com.zlebank.zplatform.member.commons.utils.DateUtil;
 import com.zlebank.zplatform.member.coopinsti.bean.CoopInsti;
 import com.zlebank.zplatform.member.coopinsti.service.CoopInstiService;
 import com.zlebank.zplatform.member.individual.bean.MemberAccountBean;
@@ -56,8 +57,6 @@ import com.zlebank.zplatform.member.individual.service.MemberAccountService;
 import com.zlebank.zplatform.member.individual.service.MemberService;
 import com.zlebank.zplatform.member.merchant.bean.MerchantBean;
 import com.zlebank.zplatform.member.merchant.service.MerchService;
-
-import net.sf.json.JSONObject;
 @Service("busInsteadPayService")
 public class InsteadPayServiceImpl implements InsteadPayService {
 	
@@ -169,7 +168,7 @@ public class InsteadPayServiceImpl implements InsteadPayService {
                 if(amtBig.compareTo(BigDecimal.ZERO)<=0 ){
                 	 errorMsgDetail.append("amt:必输大于0"+file.getAccNo()).append("|");
                 }
-                if (StringUtil.isEmpty(file.getBankCode())) {
+                if (StringUtils.isEmpty(file.getBankCode())) {
                 	if(file.getAccType().equals(InsteadPayFile.ACC_TYPE_PRI)){
                 		  //如查银行卡号没有，则通过银行卡号获取联行号
                   	   Map<String,Object> map =this.routeConfigDAO.getCardPBCCode(file.getAccNo());
@@ -187,7 +186,7 @@ public class InsteadPayServiceImpl implements InsteadPayService {
                 if (InsteadPayFile.ACC_TYPE_PUB.equals(file.getAccType())) 
                     continue;
                 String error = merchWhiteListDAO.checkMerchWhiteList(file.getMerId(), file.getAccName(), file.getAccNo());
-                if (StringUtil.isNotEmpty(error)) {
+                if (StringUtils.isNotEmpty(error)) {
                     totalError.append(error);
                 }
             }

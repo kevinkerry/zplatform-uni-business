@@ -15,7 +15,6 @@ import java.util.List;
 import org.hibernate.Session;
 
 import com.zlebank.zplatform.business.pojo.ConfigInfoModel;
-import com.zlebank.zplatform.commons.dao.BaseDAO;
 
 /**
  * 配置DAO

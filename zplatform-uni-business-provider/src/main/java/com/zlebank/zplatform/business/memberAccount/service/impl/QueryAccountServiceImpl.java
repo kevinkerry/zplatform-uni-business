@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ import com.zlebank.zplatform.business.exception.BusinessAccountException;
 import com.zlebank.zplatform.business.memberAccount.bean.MemInAndExDetailBean;
 import com.zlebank.zplatform.business.memberAccount.bean.MemberAccountBean;
 import com.zlebank.zplatform.business.memberAccount.service.QueryAccountService;
-import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
+import com.zlebank.zplatform.member.commons.utils.BeanCopyUtil;
 import com.zlebank.zplatform.member.individual.bean.MemberBalanceDetailBean;
 import com.zlebank.zplatform.member.individual.bean.MemberBean;
 import com.zlebank.zplatform.member.individual.bean.enums.MemberType;

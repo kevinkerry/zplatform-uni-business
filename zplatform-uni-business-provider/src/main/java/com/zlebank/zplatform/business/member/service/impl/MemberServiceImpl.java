@@ -7,15 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.zlebank.zplatform.business.commons.bean.ResultBean;
 import com.zlebank.zplatform.business.commons.enums.SmsValidateEnum;
-import com.zlebank.zplatform.business.exception.BusinessMemberException;
 import com.zlebank.zplatform.business.member.bean.RegisterMemberBean;
 import com.zlebank.zplatform.business.member.service.MemberService;
-import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
+import com.zlebank.zplatform.member.commons.utils.BeanCopyUtil;
 import com.zlebank.zplatform.member.coopinsti.bean.CoopInsti;
 import com.zlebank.zplatform.member.coopinsti.service.CoopInstiService;
 import com.zlebank.zplatform.member.exception.CreateBusiAcctFailedException;
 import com.zlebank.zplatform.member.exception.CreateMemberFailedException;
-import com.zlebank.zplatform.member.exception.DataCheckFailedException;
 import com.zlebank.zplatform.member.exception.InvalidMemberDataException;
 import com.zlebank.zplatform.member.exception.LoginFailedException;
 import com.zlebank.zplatform.member.individual.bean.MemberBean;

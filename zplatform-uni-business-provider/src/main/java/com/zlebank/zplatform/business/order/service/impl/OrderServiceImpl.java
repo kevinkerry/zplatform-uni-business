@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zlebank.zplatform.acc.bean.enums.BusiType;
 import com.zlebank.zplatform.business.commons.bean.ResultBean;
 import com.zlebank.zplatform.business.commons.dao.TxncodeDefDAO;
 import com.zlebank.zplatform.business.commons.enums.BusiTypeEnum;
@@ -16,8 +15,7 @@ import com.zlebank.zplatform.business.order.bean.RefundOrderBean;
 import com.zlebank.zplatform.business.order.bean.WapWithdrawBean;
 import com.zlebank.zplatform.business.order.service.OrderService;
 import com.zlebank.zplatform.business.pojo.PojoTxncodeDef;
-import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
-import com.zlebank.zplatform.member.exception.DataCheckFailedException;
+import com.zlebank.zplatform.member.commons.utils.BeanCopyUtil;
 import com.zlebank.zplatform.member.individual.bean.MemberBean;
 import com.zlebank.zplatform.member.individual.bean.PoMemberBean;
 import com.zlebank.zplatform.member.individual.bean.enums.MemberType;

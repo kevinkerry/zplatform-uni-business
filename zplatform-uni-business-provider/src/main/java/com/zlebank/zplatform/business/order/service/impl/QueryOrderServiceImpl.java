@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.zlebank.zplatform.business.exception.BusinessOrderException;
 import com.zlebank.zplatform.business.order.bean.OrderResultBean;
 import com.zlebank.zplatform.business.order.service.QueryOrderService;
-import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
+import com.zlebank.zplatform.member.commons.utils.BeanCopyUtil;
 import com.zlebank.zplatform.payment.exception.PaymentOrderException;
 import com.zlebank.zplatform.payment.order.service.QueryService;
 @Service("busQueryOrderService")

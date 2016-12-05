@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import com.zlebank.zplatform.business.coopinst.bean.CoopInstMkBean;
 import com.zlebank.zplatform.business.coopinst.service.QueryCoopInstService;
 import com.zlebank.zplatform.business.exception.BusinessCoopInstException;
-import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
 import com.zlebank.zplatform.member.commons.utils.StringUtil;
 import com.zlebank.zplatform.member.coopinsti.bean.CoopInsti;
 import com.zlebank.zplatform.member.coopinsti.bean.CoopInstiMK;

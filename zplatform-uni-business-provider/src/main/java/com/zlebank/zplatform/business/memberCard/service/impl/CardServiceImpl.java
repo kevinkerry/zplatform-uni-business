@@ -12,7 +12,7 @@ import com.zlebank.zplatform.business.commons.enums.SmsValidateEnum;
 import com.zlebank.zplatform.business.exception.BusinessCardException;
 import com.zlebank.zplatform.business.memberCard.bean.QuickCardBean;
 import com.zlebank.zplatform.business.memberCard.service.CardService;
-import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
+import com.zlebank.zplatform.member.commons.utils.BeanCopyUtil;
 import com.zlebank.zplatform.member.commons.utils.StringUtil;
 import com.zlebank.zplatform.member.exception.DataCheckFailedException;
 import com.zlebank.zplatform.member.individual.bean.MemberBean;

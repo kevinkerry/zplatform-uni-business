@@ -3,23 +3,21 @@ package com.zlebank.zplatform.business.insteadPay.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.json.JSONObject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zlebank.zplatform.business.commons.bean.ResultBean;
 import com.zlebank.zplatform.business.commons.dao.InsteadPayBatchDAO;
 import com.zlebank.zplatform.business.exception.BusinessInsteadPayException;
-import com.zlebank.zplatform.business.exception.BusinessMemberException;
 import com.zlebank.zplatform.business.insteadPay.bean.InsteadPayQueryFile;
 import com.zlebank.zplatform.business.insteadPay.bean.InsteadPayQuery_Request;
 import com.zlebank.zplatform.business.insteadPay.bean.InsteadPayQuery_Response;
 import com.zlebank.zplatform.business.insteadPay.service.QueryInsteadPayService;
 import com.zlebank.zplatform.business.pojo.PojoInsteadPayBatch;
 import com.zlebank.zplatform.business.pojo.PojoInsteadPayDetail;
-
-import net.sf.json.JSONObject;
 @Service("busQueryInsteadPayService")
 public class QueryInsteadPayServiceImpl implements QueryInsteadPayService {
 	private final static Logger log = LoggerFactory.getLogger(QueryInsteadPayServiceImpl.class);

@@ -13,8 +13,6 @@ package com.zlebank.zplatform.business.commons.bean;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.zlebank.zplatform.commons.bean.Bean;
-
 /**
  * Class Description
  *
@@ -23,7 +21,7 @@ import com.zlebank.zplatform.commons.bean.Bean;
  * @date 2015年12月21日 下午7:55:43
  * @since 
  */
-public class InsteadPayDetailBean implements Bean{
+public class InsteadPayDetailBean{
     /**标识**/
     private Long id;
     /**批处理的ID（注意：不是报文中的批处理号）**/

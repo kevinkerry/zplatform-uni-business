@@ -9,7 +9,7 @@ import com.zlebank.zplatform.business.commons.bean.ResultBean;
 import com.zlebank.zplatform.business.commons.enums.OrderStatusEnum;
 import com.zlebank.zplatform.business.pay.bean.RealTimeInstPayBean;
 import com.zlebank.zplatform.business.pay.service.RealtimeInstPayService;
-import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
+import com.zlebank.zplatform.member.commons.utils.BeanCopyUtil;
 import com.zlebank.zplatform.payment.exception.PaymentInsteadPayException;
 import com.zlebank.zplatform.payment.exception.PaymentOrderException;
 import com.zlebank.zplatform.payment.exception.PaymentQuickPayException;

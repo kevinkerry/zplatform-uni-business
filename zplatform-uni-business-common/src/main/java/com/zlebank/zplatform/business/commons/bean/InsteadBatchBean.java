@@ -13,8 +13,6 @@ package com.zlebank.zplatform.business.commons.bean;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.zlebank.zplatform.commons.bean.Bean;
-
 /**
  * 
  * 代付批次结果
@@ -24,7 +22,7 @@ import com.zlebank.zplatform.commons.bean.Bean;
  * @date 2016年3月11日 下午4:29:17
  * @since
  */
-public class InsteadBatchBean implements Bean{
+public class InsteadBatchBean{
     /**标识**/
     private Long id;
     /**批次号**/

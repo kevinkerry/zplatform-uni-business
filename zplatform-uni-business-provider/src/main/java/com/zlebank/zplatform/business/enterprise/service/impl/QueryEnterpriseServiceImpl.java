@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.zlebank.zplatform.business.enterprise.bean.EnterpriseBean;
 import com.zlebank.zplatform.business.enterprise.service.QueryEnterpriseService;
 import com.zlebank.zplatform.business.exception.BusinessEnterpriseException;
-import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
+import com.zlebank.zplatform.member.commons.utils.BeanCopyUtil;
 import com.zlebank.zplatform.member.commons.utils.StringUtil;
 import com.zlebank.zplatform.member.merchant.service.EnterpriseService;
 @Service("busQueryEnterpriseService")

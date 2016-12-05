@@ -1,5 +1,5 @@
 /* 
- * InsteadPayBatchDAOImpl.java  
+	 * InsteadPayBatchDAOImpl.java  
  * 
  * version TODO
  *
@@ -22,8 +22,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zlebank.zplatform.business.commons.dao.ConfigInfoDAO;
+import com.zlebank.zplatform.business.commons.dao.base.HibernateBaseDAOImpl;
 import com.zlebank.zplatform.business.pojo.ConfigInfoModel;
-import com.zlebank.zplatform.commons.dao.impl.HibernateBaseDAOImpl;
 
 /**
  * 配置DAO

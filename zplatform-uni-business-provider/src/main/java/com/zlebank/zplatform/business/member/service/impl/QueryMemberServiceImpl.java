@@ -12,7 +12,6 @@ import com.zlebank.zplatform.business.member.bean.MemberBean;
 import com.zlebank.zplatform.business.member.service.QueryMemberService;
 import com.zlebank.zplatform.member.coopinsti.bean.CoopInsti;
 import com.zlebank.zplatform.member.coopinsti.service.CoopInstiService;
-import com.zlebank.zplatform.member.exception.InvalidMemberDataException;
 import com.zlebank.zplatform.member.individual.bean.PoMemberBean;
 import com.zlebank.zplatform.member.individual.bean.enums.MemberType;
 import com.zlebank.zplatform.member.individual.bean.enums.RealNameLvType;

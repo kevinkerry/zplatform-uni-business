@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zlebank.zplatform.business.commons.dao.RouteConfigDAO;
 import com.zlebank.zplatform.business.commons.dao.base.HibernateBaseDAOImpl;
 import com.zlebank.zplatform.business.pojo.RouteConfigModel;
-import com.zlebank.zplatform.commons.utils.StringUtil;
 import com.zlebank.zplatform.payment.commons.bean.ResultBean;
 @Repository("routeConfigDAO")
 public class RouteConfigDAOImpl extends HibernateBaseDAOImpl<RouteConfigModel> implements RouteConfigDAO  {
@@ -55,11 +54,11 @@ public class RouteConfigDAOImpl extends HibernateBaseDAOImpl<RouteConfigModel> i
             sqlBuffer.append("FROM (SELECT t.rid AS rid, t.ROUTVER AS rt ");
             sqlBuffer.append("FROM t_route_config t ");
             sqlBuffer.append("WHERE 1=1 ");
-            if(StringUtil.isNotEmpty(cashCode)){
+            if(StringUtils.isNotEmpty(cashCode)){
                 sqlBuffer.append("AND t.CASHCODE = ? ");
                 paramList.add(cashCode);
             }
-            if(StringUtil.isNotEmpty(merchRoutver)){
+            if(StringUtils.isNotEmpty(merchRoutver)){
                 sqlBuffer.append("AND t.merchroutver = ? ");
                 paramList.add(merchRoutver);
             }
@@ -184,7 +183,7 @@ public class RouteConfigDAOImpl extends HibernateBaseDAOImpl<RouteConfigModel> i
             sqlBuffer.append("FROM (SELECT t.rid AS rid, t.ROUTVER AS rt ");
             sqlBuffer.append("FROM t_route_config t ");
             sqlBuffer.append("WHERE 1=1 ");
-            if(StringUtil.isNotEmpty(merchRoutver)){
+            if(StringUtils.isNotEmpty(merchRoutver)){
                 sqlBuffer.append("AND t.merchroutver = ? ");
                 paramList.add(merchRoutver);
             }

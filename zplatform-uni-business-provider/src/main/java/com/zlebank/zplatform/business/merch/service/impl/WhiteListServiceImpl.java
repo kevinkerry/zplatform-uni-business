@@ -12,7 +12,7 @@ import com.zlebank.zplatform.business.exception.BusinessMerchException;
 import com.zlebank.zplatform.business.merch.bean.MerchWhiteBean;
 import com.zlebank.zplatform.business.merch.service.WhiteListService;
 import com.zlebank.zplatform.business.pojo.PojoMerchWhiteList;
-import com.zlebank.zplatform.commons.utils.BeanCopyUtil;
+import com.zlebank.zplatform.member.commons.utils.BeanCopyUtil;
 @Service("busWhiteListService")
 public class WhiteListServiceImpl implements WhiteListService {
 	

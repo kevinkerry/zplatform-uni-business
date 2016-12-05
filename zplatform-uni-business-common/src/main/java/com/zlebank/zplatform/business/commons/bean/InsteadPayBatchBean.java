@@ -12,8 +12,6 @@ package com.zlebank.zplatform.business.commons.bean;
 
 import java.util.Date;
 
-import com.zlebank.zplatform.commons.bean.Bean;
-
 /**
  * Class Description
  *
@@ -22,7 +20,7 @@ import com.zlebank.zplatform.commons.bean.Bean;
  * @date 2015年12月21日 下午7:55:26
  * @since 
  */
-public class InsteadPayBatchBean implements Bean{
+public class InsteadPayBatchBean{
     /**标识**/
     private Long id;
     /**批次号**/
