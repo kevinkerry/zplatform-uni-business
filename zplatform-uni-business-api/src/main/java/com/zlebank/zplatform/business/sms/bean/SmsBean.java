@@ -9,7 +9,7 @@ public class SmsBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	//手机号
 	private String mobile;
-	//短信模板 1001-注册 1002-支付 1003-修改登录密码 1004-修改支付密码   1005绑卡 
+	//短信模板 1001-注册 1003-修改登录密码 1004-修改支付密码   1005绑卡 
 	private String moduleType;
 	
 	
